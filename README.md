@@ -49,8 +49,11 @@ Pré-requisitos no GitHub:
 1. Crie os repositórios privados `xploter13/elinea-deploy` e `xploter13/elinea-site` e envie os respectivos projetos.
 2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos repositórios `elinea-api`, `elinea-admin`, `elinea-gestao`, `elinea-storefront`, `elinea-customer`, `elinea-sdk`, `elinea-ui` e `elinea-site`.
 3. Nas configurações de Actions do `elinea-deploy`, mantenha a permissão de escrita em Packages para o `GITHUB_TOKEN`.
-4. Faça merge da versão desejada na branch padrão de cada repositório.
-5. Execute manualmente o workflow `Publicar imagens`, selecione `homologation` ou `production` e informe uma versão, como `2026.09.10-1`.
+4. Use `develop` em todos os oito repositórios para homologação e `master` para produção. Após validar homologação, promova o código por PR de `develop` para `master`. O workflow seleciona a branch pelo ambiente, sem recorrer à branch padrão.
+5. Crie os GitHub Environments `homologation` e `production` no repositório `elinea-deploy`. Configure revisores obrigatórios em `production` para exigir aprovação antes da publicação (conforme disponibilidade do plano).
+6. Execute manualmente o workflow `Publicar imagens`, selecione `homologation` ou `production` e informe uma versão, como `2026.09.10-1`.
+
+A seleção de ambiente não faz merge nem publica automaticamente ao enviar commits. O acionamento continua manual. No Site, crie `master` a partir de `main` e configure-a como padrão; mantenha `main` até atualizar eventuais integrações.
 
 O workflow compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens.
 
