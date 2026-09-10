@@ -1,0 +1,44 @@
+services:
+  mysql:
+    mem_limit: 512m
+    cpus: 0.30
+
+  redis:
+    mem_limit: 128m
+    cpus: 0.10
+
+  api:
+    mem_limit: 256m
+    cpus: 0.30
+
+  api-web:
+    mem_limit: 48m
+    cpus: 0.10
+
+  horizon:
+    mem_limit: 128m
+    cpus: 0.15
+
+  scheduler:
+    mem_limit: 96m
+    cpus: 0.10
+
+  storefront:
+    mem_limit: 256m
+    cpus: 0.20
+
+  customer:
+    mem_limit: 256m
+    cpus: 0.20
+
+  site:
+    mem_limit: 48m
+    cpus: 0.05
+
+  admin:
+    mem_limit: 48m
+    cpus: 0.05
+
+  gestao:
+    mem_limit: 48m
+    cpus: 0.05

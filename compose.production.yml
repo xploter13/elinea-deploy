@@ -1,0 +1,29 @@
+services:
+  traefik:
+    image: traefik:v3.6.7
+    restart: unless-stopped
+    command:
+      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.watch=true
+      - --certificatesresolvers.hostinger.acme.email=${ACME_EMAIL}
+    environment:
+      HOSTINGER_API_TOKEN: ${HOSTINGER_API_TOKEN}
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./docker/traefik/dynamic.yml:/etc/traefik/dynamic/dynamic.yml:ro
+      - traefik_certs:/letsencrypt
+    networks: [proxy]
+    mem_limit: 128m
+    cpus: 0.20
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  traefik_certs:

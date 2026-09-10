@@ -1,0 +1,265 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+x-api: &api-service
+  image: ${REGISTRY_NAMESPACE}/elinea-api:${IMAGE_TAG}
+  pull_policy: always
+  environment:
+    APP_NAME: ${APP_NAME}
+    APP_ENV: ${APP_ENV}
+    APP_KEY: ${APP_KEY}
+    APP_DEBUG: "false"
+    APP_URL: https://api.${DOMAIN}
+    APP_LOCALE: ${APP_LOCALE:-pt_BR}
+    APP_FALLBACK_LOCALE: ${APP_FALLBACK_LOCALE:-pt_BR}
+    APP_MAINTENANCE_DRIVER: file
+    BCRYPT_ROUNDS: ${BCRYPT_ROUNDS:-12}
+    LOG_CHANNEL: stack
+    LOG_STACK: single
+    LOG_LEVEL: ${LOG_LEVEL:-warning}
+    DB_CONNECTION: mysql
+    DB_HOST: mysql
+    DB_PORT: "3306"
+    DB_DATABASE: ${DB_DATABASE}
+    DB_USERNAME: ${DB_USERNAME}
+    DB_PASSWORD: ${DB_PASSWORD}
+    REDIS_CLIENT: phpredis
+    REDIS_HOST: redis
+    REDIS_PASSWORD: ${REDIS_PASSWORD}
+    REDIS_PORT: "6379"
+    QUEUE_CONNECTION: redis
+    CACHE_STORE: redis
+    SESSION_DRIVER: redis
+    SESSION_LIFETIME: ${SESSION_LIFETIME:-120}
+    SESSION_ENCRYPT: "true"
+    SESSION_PATH: /
+    SESSION_DOMAIN: ${SESSION_DOMAIN:-}
+    HORIZON_MAX_PROCESSES: ${HORIZON_MAX_PROCESSES:-1}
+    FILESYSTEM_DISK: local
+    CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+    PANEL_URL: https://admin.${DOMAIN}
+    TENANCY_BASE_DOMAIN: ${DOMAIN}
+    TENANCY_HEADER: X-Site
+    TENANCY_DOMAIN_HEADER: X-Store-Domain
+    API_SETUP_TOKEN: ${API_SETUP_TOKEN}
+    MAIL_MAILER: ${MAIL_MAILER:-smtp}
+    MAIL_SCHEME: ${MAIL_SCHEME:-smtp}
+    MAIL_HOST: ${MAIL_HOST}
+    MAIL_PORT: ${MAIL_PORT:-587}
+    MAIL_USERNAME: ${MAIL_USERNAME}
+    MAIL_PASSWORD: ${MAIL_PASSWORD}
+    MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+    MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Elínea}
+    STRIPE_KEY: ${STRIPE_KEY}
+    STRIPE_SECRET: ${STRIPE_SECRET}
+    STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+    CASHIER_CURRENCY: brl
+    CASHIER_CURRENCY_LOCALE: pt_BR
+  restart: unless-stopped
+  depends_on:
+    mysql:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  volumes:
+    - api_storage:/var/www/html/storage
+  networks: [backend]
+  logging: *default-logging
+
+services:
+  mysql:
+    image: mysql:8.4.7
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/elinea.cnf:/etc/mysql/conf.d/elinea.cnf:ro
+    networks: [backend]
+    healthcheck:
+      test: [CMD-SHELL, "MYSQL_PWD=$${MYSQL_PASSWORD} mysqladmin ping -h 127.0.0.1 -u $${MYSQL_USER} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+    mem_limit: ${MYSQL_MEMORY_LIMIT:-1g}
+    cpus: ${MYSQL_CPU_LIMIT:-0.65}
+    logging: *default-logging
+
+  redis:
+    image: redis:8.2.4-alpine
+    restart: unless-stopped
+    command: [redis-server, /usr/local/etc/redis/redis.conf, --requirepass, "${REDIS_PASSWORD}"]
+    volumes:
+      - redis_data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks: [backend]
+    healthcheck:
+      test: [CMD-SHELL, "redis-cli -a '$${REDIS_PASSWORD}' ping | grep PONG"]
+      interval: 10s
+      timeout: 4s
+      retries: 10
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    mem_limit: ${REDIS_MEMORY_LIMIT:-256m}
+    cpus: ${REDIS_CPU_LIMIT:-0.20}
+    logging: *default-logging
+
+  api:
+    <<: *api-service
+    mem_limit: ${API_MEMORY_LIMIT:-384m}
+    cpus: ${API_CPU_LIMIT:-0.60}
+
+  api-web:
+    image: ${REGISTRY_NAMESPACE}/elinea-api-web:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    depends_on: [api]
+    volumes:
+      - api_storage:/var/www/html/storage:ro
+    networks: [proxy, backend]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.rule=Host(`api.${DOMAIN}`)
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.api-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.service=api-${ENVIRONMENT_SLUG}
+    mem_limit: ${API_WEB_MEMORY_LIMIT:-64m}
+    cpus: ${API_WEB_CPU_LIMIT:-0.20}
+    logging: *default-logging
+
+  horizon:
+    <<: *api-service
+    command: [php, artisan, horizon]
+    stop_grace_period: 75s
+    mem_limit: ${HORIZON_MEMORY_LIMIT:-256m}
+    cpus: ${HORIZON_CPU_LIMIT:-0.35}
+
+  scheduler:
+    <<: *api-service
+    command: [php, artisan, schedule:work]
+    mem_limit: ${SCHEDULER_MEMORY_LIMIT:-128m}
+    cpus: ${SCHEDULER_CPU_LIMIT:-0.15}
+
+  storefront:
+    image: ${REGISTRY_NAMESPACE}/elinea-storefront:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    depends_on: [customer, api-web]
+    environment:
+      NUXT_API_BASE: http://api-web/api/v1
+      NUXT_ELINEA_STORE_SITE: default
+      NUXT_TRUST_PROXY_HEADERS: "true"
+      NUXT_CUSTOMER_APP_URL: http://customer:3000
+    networks: [proxy, backend]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.rule=HostRegexp(`^[a-z0-9-]+\.${DOMAIN}$`)
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.priority=10
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.storefront-${ENVIRONMENT_SLUG}.loadbalancer.server.port=3000
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.service=storefront-${ENVIRONMENT_SLUG}
+    mem_limit: ${STOREFRONT_MEMORY_LIMIT:-384m}
+    cpus: ${STOREFRONT_CPU_LIMIT:-0.45}
+    logging: *default-logging
+
+  customer:
+    image: ${REGISTRY_NAMESPACE}/elinea-customer:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      NUXT_API_BASE: http://api-web/api/v1
+      NUXT_ELINEA_STORE_SITE: default
+      NUXT_TRUST_PROXY_HEADERS: "true"
+    networks: [backend]
+    mem_limit: ${CUSTOMER_MEMORY_LIMIT:-384m}
+    cpus: ${CUSTOMER_CPU_LIMIT:-0.40}
+    logging: *default-logging
+
+  site:
+    image: ${REGISTRY_NAMESPACE}/elinea-site:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].main=${DOMAIN}
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].sans=*.${DOMAIN}
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.site-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.rule=Host(`www.${DOMAIN}`)
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.middlewares=redirect-www-${ENVIRONMENT_SLUG}
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.regex=^https?://www\.(.*)
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.replacement=https://$${1}
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.permanent=true
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
+    logging: *default-logging
+
+  admin:
+    image: ${REGISTRY_NAMESPACE}/elinea-admin:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.rule=Host(`admin.${DOMAIN}`)
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.admin-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.service=admin-${ENVIRONMENT_SLUG}
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
+    logging: *default-logging
+
+  gestao:
+    image: ${REGISTRY_NAMESPACE}/elinea-gestao:${IMAGE_TAG}
+    pull_policy: always
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.rule=Host(`gestao.${DOMAIN}`)
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.gestao-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.service=gestao-${ENVIRONMENT_SLUG}
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
+    logging: *default-logging
+
+networks:
+  proxy:
+    name: elinea-proxy
+    external: true
+  backend:
+    internal: true
+
+volumes:
+  mysql_data:
+  redis_data:
+  api_storage:

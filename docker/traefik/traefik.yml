@@ -1,0 +1,31 @@
+api:
+  dashboard: false
+ping: {}
+entryPoints:
+  web:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    address: :443
+providers:
+  docker:
+    exposedByDefault: false
+certificatesResolvers:
+  hostinger:
+    acme:
+      email: changeme@elinea.com.br
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: hostinger
+        resolvers:
+          - 1.1.1.1:53
+          - 8.8.8.8:53
+      keyType: EC256
+log:
+  level: INFO
+accessLog: {}
