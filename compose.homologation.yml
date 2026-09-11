@@ -16,6 +16,8 @@ services:
     cpus: 0.10
 
   horizon:
+    # Reuse the worker profile; APP_ENV remains staging and Redis stays isolated.
+    command: [php, artisan, horizon, --environment=production]
     mem_limit: 128m
     cpus: 0.15
 

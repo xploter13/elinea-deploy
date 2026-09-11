@@ -68,6 +68,26 @@ Execute o build a partir do repositório de deploy:
 
 O script valida a branch de cada fonte e compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens. Os builds são sequenciais para limitar o uso de memória e CPU.
 
+## Deploy simplificado
+
+O script `scripts/deploy.sh` executa o fluxo completo: verifica alterações locais, atualiza os repositórios na branch correta, constrói as imagens, seleciona uma tag versionada, inicia MySQL e Redis, executa as migrations, sobe os serviços e valida as aplicações.
+
+```bash
+# Publica develop em homologação com uma versão automática
+./scripts/deploy.sh homologation
+
+# Publica master em produção e solicita confirmação explícita
+./scripts/deploy.sh production
+
+# Também é possível informar a versão
+./scripts/deploy.sh production 2026.09.11-2
+
+# Desliga homologação preservando bancos e volumes
+./scripts/deploy.sh stop-homologation
+```
+
+Antes das migrations de produção, o script cria um dump compactado em `backups/`. Se os fontes estiverem em outro diretório, informe `SOURCE_ROOT=/caminho`. O modo `SKIP_SOURCE_UPDATE=1` existe para builds deliberadamente offline.
+
 ## Preparação da VPS
 
 1. Instale Docker Engine e o plugin Compose pelo repositório oficial do Docker.
