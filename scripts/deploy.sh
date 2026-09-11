@@ -5,21 +5,38 @@ umask 077
 
 deploy_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 source_root=${SOURCE_ROOT:-/tmp/elinea-build}
-environment=${1:-}
-version=${2:-$(date -u +%Y.%m.%d-%H%M)}
+environment=
+version=$(date -u +%Y.%m.%d-%H%M%S)
+action=deploy
+dry_run=0
+version_set=0
 repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-customer elinea-sdk elinea-ui elinea-site)
 
 usage() {
   cat <<'EOF'
 Uso:
-  ./scripts/deploy.sh homologation [versao]
-  ./scripts/deploy.sh production [versao]
-  ./scripts/deploy.sh stop-homologation
+  ./scripts/deploy.sh --homologation [opções]
+  ./scripts/deploy.sh --production [opções]
 
-Variáveis opcionais:
-  SOURCE_ROOT=/tmp/elinea-build  Diretório que contém os repositórios.
-  SKIP_SOURCE_UPDATE=1           Não executa fetch/atualização dos fontes.
-  DEPLOY_YES=1                   Confirma produção sem prompt (uso automatizado).
+Flags:
+  --homologation                 Deploy de develop em homologação.
+  --production                   Deploy de master em produção.
+  -e, --env AMBIENTE              production ou homologation.
+  -v, --version VERSAO            Tag da versão (padrão: data/hora UTC).
+  -y, --yes                       Confirma produção sem prompt.
+  --source-root DIRETORIO         Local dos oito repositórios.
+  --skip-update                   Usa fontes locais sem fetch.
+  --stop                         Desliga somente homologação, preservando dados.
+  --dry-run                      Mostra o plano sem alterar arquivos ou serviços.
+  -h, --help                     Mostra esta ajuda.
+
+Exemplos:
+  ./scripts/deploy.sh --homologation
+  ./scripts/deploy.sh --production --version 2026.09.11-2 --yes
+  ./scripts/deploy.sh --homologation --stop
+
+Compatibilidade: homologation [versao], production [versao], stop-homologation.
+Variáveis opcionais: SOURCE_ROOT, SKIP_SOURCE_UPDATE=1, DEPLOY_YES=1.
 EOF
 }
 
@@ -32,6 +49,42 @@ on_error() {
   echo "Deploy interrompido. Consulte a saída acima; os containers existentes não foram removidos." >&2
 }
 trap on_error ERR
+
+set_environment() {
+  [[ -z "$environment" || "$environment" == "$1" ]] || fail "selecione apenas um ambiente"
+  environment=$1
+}
+
+require_value() {
+  [[ $# -ge 2 && -n "$2" && "$2" != -* ]] || fail "a flag $1 exige um valor"
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --production|--homologation) set_environment "${1#--}"; shift ;;
+    -e|--env) require_value "$@"; set_environment "$2"; shift 2 ;;
+    -v|--version)
+      require_value "$@"
+      [[ "$version_set" == 0 ]] || fail "versão informada mais de uma vez"
+      version=$2; version_set=1; shift 2 ;;
+    --source-root) require_value "$@"; source_root=$2; shift 2 ;;
+    -y|--yes) DEPLOY_YES=1; shift ;;
+    --skip-update) SKIP_SOURCE_UPDATE=1; shift ;;
+    --stop) action=stop; shift ;;
+    --dry-run) dry_run=1; shift ;;
+    -h|--help|help) usage; exit 0 ;;
+    production|homologation) set_environment "$1"; shift ;;
+    stop-homologation) set_environment homologation; action=stop; shift ;;
+    -*) fail "flag desconhecida: $1" ;;
+    *)
+      [[ -n "$environment" && "$version_set" == 0 ]] || fail "argumento inesperado: $1"
+      version=$1; version_set=1; shift ;;
+  esac
+done
+
+[[ "$version" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || fail "versão inválida: $version"
+[[ "$action" != stop || "$environment" == homologation ]] || fail "--stop exige --homologation"
+[[ "$action" != stop || "$version_set" == 0 ]] || fail "--stop não aceita versão"
 
 case "$environment" in
   homologation)
@@ -46,23 +99,24 @@ case "$environment" in
     project=elinea-production
     override_file="$deploy_root/compose.production.yml"
     ;;
-  stop-homologation)
-    exec docker compose \
-      --env-file "$deploy_root/.env.homologation" \
-      -p elinea-homologation \
-      -f "$deploy_root/compose.yml" \
-      -f "$deploy_root/compose.homologation.yml" \
-      down
-    ;;
-  -h|--help|help)
-    usage
-    exit 0
-    ;;
   *)
     usage >&2
     exit 1
     ;;
 esac
+
+if [[ "$dry_run" == 1 ]]; then
+  update_sources=sim
+  [[ "${SKIP_SOURCE_UPDATE:-0}" != 1 ]] || update_sources=não
+  printf 'Ação: %s\nAmbiente: %s\nBranch: %s\nProjeto Compose: %s\nTag: %s-%s\nFontes: %s\nAtualizar fontes: %s\n' \
+    "$action" "$environment" "$branch" "$project" "$environment" "$version" "$source_root" "$update_sources"
+  exit 0
+fi
+
+if [[ "$action" == stop ]]; then
+  exec docker compose --env-file "$env_file" -p "$project" \
+    -f "$deploy_root/compose.yml" -f "$override_file" down
+fi
 
 for command in docker git awk; do
   command -v "$command" >/dev/null || fail "comando obrigatório não encontrado: $command"
@@ -72,7 +126,7 @@ done
 [[ "$version" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || fail "versão inválida: $version"
 
 if [[ "$environment" == production && "${DEPLOY_YES:-0}" != 1 ]]; then
-  [[ -t 0 ]] || fail "produção exige terminal interativo ou DEPLOY_YES=1"
+  [[ -t 0 ]] || fail "produção exige terminal interativo ou --yes"
   echo "Você está prestes a publicar a versão $version em PRODUÇÃO."
   read -r -p "Digite production para continuar: " confirmation
   [[ "$confirmation" == production ]] || fail "publicação cancelada"

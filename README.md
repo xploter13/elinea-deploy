@@ -74,17 +74,19 @@ O script `scripts/deploy.sh` executa o fluxo completo: verifica alterações loc
 
 ```bash
 # Publica develop em homologação com uma versão automática
-./scripts/deploy.sh homologation
+./scripts/deploy.sh --homologation
 
 # Publica master em produção e solicita confirmação explícita
-./scripts/deploy.sh production
+./scripts/deploy.sh --production
 
 # Também é possível informar a versão
-./scripts/deploy.sh production 2026.09.11-2
+./scripts/deploy.sh --production --version 2026.09.11-2
 
 # Desliga homologação preservando bancos e volumes
-./scripts/deploy.sh stop-homologation
+./scripts/deploy.sh --homologation --stop
 ```
+
+Use `--dry-run` para visualizar o ambiente, a branch e a tag sem executar o deploy. Use `--yes` para confirmar produção em automações, `--source-root /caminho` para indicar os fontes e `--skip-update` para usar os fontes locais. Consulte todas as opções com `--help`. Os argumentos posicionais antigos continuam aceitos.
 
 Antes das migrations de produção, o script cria um dump compactado em `backups/`. Se os fontes estiverem em outro diretório, informe `SOURCE_ROOT=/caminho`. O modo `SKIP_SOURCE_UPDATE=1` existe para builds deliberadamente offline.
 
