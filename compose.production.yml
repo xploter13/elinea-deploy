@@ -5,9 +5,9 @@ services:
     command:
       - --providers.file.directory=/etc/traefik/dynamic
       - --providers.file.watch=true
-      - --certificatesresolvers.hostinger.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.cloudflare.acme.email=${ACME_EMAIL}
     environment:
-      HOSTINGER_API_TOKEN: ${HOSTINGER_API_TOKEN}
+      CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     ports:
       - 80:80
       - 443:443

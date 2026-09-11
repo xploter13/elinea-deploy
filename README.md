@@ -28,7 +28,7 @@ Homologação:
 - `gestao.homolog.elinea.com.br`: gestão da plataforma
 - `*.homolog.elinea.com.br`: lojas de teste
 
-No DNS da Hostinger, aponte todos esses nomes e wildcards para o IPv4 da VPS. O Traefik usa DNS-01 com a API da Hostinger para emitir os certificados wildcard.
+No DNS da Cloudflare, aponte todos esses nomes e wildcards para o IPv4 da VPS. O Traefik usa DNS-01 com a API da Cloudflare para emitir os certificados wildcard. Crie um API Token limitado à zona `elinea.com.br`, com `Zone:Read` e `DNS:Edit`, e grave-o em `CF_DNS_API_TOKEN`.
 
 ## Publicação das imagens
 

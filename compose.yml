@@ -129,7 +129,7 @@ services:
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.api-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.service=api-${ENVIRONMENT_SLUG}
@@ -166,7 +166,7 @@ services:
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.rule=HostRegexp(`^[a-z0-9-]+\.${DOMAIN}$`)
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.priority=10
-      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.storefront-${ENVIRONMENT_SLUG}.loadbalancer.server.port=3000
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.service=storefront-${ENVIRONMENT_SLUG}
@@ -197,7 +197,7 @@ services:
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].sans=*.${DOMAIN}
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
@@ -206,7 +206,7 @@ services:
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.rule=Host(`www.${DOMAIN}`)
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.middlewares=redirect-www-${ENVIRONMENT_SLUG}
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
       - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.regex=^https?://www\.(.*)
@@ -226,7 +226,7 @@ services:
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.rule=Host(`admin.${DOMAIN}`)
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.admin-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.service=admin-${ENVIRONMENT_SLUG}
@@ -244,7 +244,7 @@ services:
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.rule=Host(`gestao.${DOMAIN}`)
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.gestao-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.service=gestao-${ENVIRONMENT_SLUG}
