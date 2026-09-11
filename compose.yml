@@ -126,6 +126,7 @@ services:
     networks: [proxy, backend]
     labels:
       - traefik.enable=true
+      - traefik.docker.network=elinea-proxy
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.priority=200
@@ -163,6 +164,7 @@ services:
     networks: [proxy, backend]
     labels:
       - traefik.enable=true
+      - traefik.docker.network=elinea-proxy
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.rule=HostRegexp(`^[a-z0-9-]+\.${DOMAIN}$`)
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.priority=10
