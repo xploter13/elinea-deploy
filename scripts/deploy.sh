@@ -138,8 +138,13 @@ if [[ "${SKIP_SOURCE_UPDATE:-0}" != 1 ]]; then
     repository_path="$source_root/$repository"
     [[ -d "$repository_path/.git" ]] || fail "repositório ausente: $repository_path"
     [[ -z "$(git -C "$repository_path" status --porcelain)" ]] || fail "$repository possui alterações locais"
-    git -C "$repository_path" fetch origin
-    git -C "$repository_path" switch "$branch"
+    # Fetch the selected branch even when the clone tracks only an old default.
+    git -C "$repository_path" fetch origin "refs/heads/$branch:refs/remotes/origin/$branch"
+    if git -C "$repository_path" show-ref --verify --quiet "refs/heads/$branch"; then
+      git -C "$repository_path" switch "$branch"
+    else
+      git -C "$repository_path" switch --no-track -c "$branch" "refs/remotes/origin/$branch"
+    fi
     git -C "$repository_path" merge --ff-only "origin/$branch"
   done
 else
