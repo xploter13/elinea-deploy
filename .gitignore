@@ -1,5 +1,6 @@
 .env
 .env.production
 .env.homologation
+.sources/
 backups/*
 !backups/.gitkeep

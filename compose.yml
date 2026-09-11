@@ -6,7 +6,7 @@ x-logging: &default-logging
 
 x-api: &api-service
   image: ${REGISTRY_NAMESPACE}/elinea-api:${IMAGE_TAG}
-  pull_policy: always
+  pull_policy: never
   environment:
     APP_NAME: ${APP_NAME}
     APP_ENV: ${APP_ENV}
@@ -118,7 +118,7 @@ services:
 
   api-web:
     image: ${REGISTRY_NAMESPACE}/elinea-api-web:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     depends_on: [api]
     volumes:
@@ -152,7 +152,7 @@ services:
 
   storefront:
     image: ${REGISTRY_NAMESPACE}/elinea-storefront:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     depends_on: [customer, api-web]
     environment:
@@ -176,7 +176,7 @@ services:
 
   customer:
     image: ${REGISTRY_NAMESPACE}/elinea-customer:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     environment:
       NUXT_API_BASE: http://api-web/api/v1
@@ -189,7 +189,7 @@ services:
 
   site:
     image: ${REGISTRY_NAMESPACE}/elinea-site:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -218,7 +218,7 @@ services:
 
   admin:
     image: ${REGISTRY_NAMESPACE}/elinea-admin:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -236,7 +236,7 @@ services:
 
   gestao:
     image: ${REGISTRY_NAMESPACE}/elinea-gestao:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:
