@@ -32,7 +32,7 @@ No DNS da Cloudflare, aponte todos esses nomes e wildcards para o IPv4 da VPS. O
 
 ## Build local das imagens
 
-Clone os nove repositórios como diretórios irmãos em um workspace temporário. Use `develop` para homologação e `master` para produção. O script gera as sete imagens localmente com duas tags:
+Clone os nove repositórios como diretórios irmãos em um workspace persistente. Use `develop` para homologação e `master` para produção. O script gera as sete imagens localmente com duas tags:
 
 ```text
 production
@@ -47,7 +47,7 @@ A primeira acompanha a versão atual do ambiente. A segunda identifica o build e
 Exemplo de workspace:
 
 ```text
-/tmp/elinea-build/
+/opt/elinea-build/
 ├── elinea-deploy
 ├── elinea-api
 ├── elinea-admin
@@ -62,8 +62,8 @@ Exemplo de workspace:
 Execute o build a partir do repositório de deploy:
 
 ```bash
-./scripts/build-images-local.sh homologation /tmp/elinea-build 2026.09.11-1
-./scripts/build-images-local.sh production /tmp/elinea-build 2026.09.11-1
+./scripts/build-images-local.sh homologation /opt/elinea-build 2026.09.11-1
+./scripts/build-images-local.sh production /opt/elinea-build 2026.09.11-1
 ```
 
 O script valida a branch de cada fonte e compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens. Os builds são sequenciais para limitar o uso de memória e CPU.
@@ -94,7 +94,7 @@ Antes das migrations de produção, o script cria um dump compactado em `backups
 
 1. Instale Docker Engine e o plugin Compose pelo repositório oficial do Docker.
 2. Crie 2 GB de swap e habilite o firewall somente para SSH, 80 e 443.
-3. Clone o `elinea-deploy` permanentemente e prepare um workspace temporário com os fontes durante cada build.
+3. Clone o `elinea-deploy` e mantenha os fontes no workspace persistente `/opt/elinea-build`.
 4. Crie a rede compartilhada:
 
 ```bash
@@ -121,7 +121,7 @@ docker compose --env-file .env.production -p elinea-production -f compose.yml -f
 Construa as imagens, suba a infraestrutura, execute as migrations e inicie os serviços:
 
 ```bash
-./scripts/build-images-local.sh production /tmp/elinea-build 2026.09.11-1
+./scripts/build-images-local.sh production /opt/elinea-build 2026.09.11-1
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml up -d mysql redis
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml run --rm api php artisan migrate --force
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml up -d
@@ -134,7 +134,7 @@ Cadastre no Stripe o webhook `https://api.elinea.com.br/api/v1/webhooks/stripe` 
 Para iniciar:
 
 ```bash
-./scripts/build-images-local.sh homologation /tmp/elinea-build 2026.09.11-1
+./scripts/build-images-local.sh homologation /opt/elinea-build 2026.09.11-1
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml up -d mysql redis
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml run --rm api php artisan migrate --force
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml up -d

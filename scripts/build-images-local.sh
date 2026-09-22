@@ -2,7 +2,7 @@
 set -euo pipefail
 
 environment=${1:-}
-source_root=${2:-/tmp/elinea-build}
+source_root=${2:-/opt/elinea-build}
 version=${3:-$(date -u +%Y.%m.%d-%H%M)}
 namespace=${REGISTRY_NAMESPACE:-elinea}
 deploy_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

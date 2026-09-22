@@ -4,7 +4,7 @@ set -Eeuo pipefail
 umask 077
 
 deploy_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-source_root=${SOURCE_ROOT:-/tmp/elinea-build}
+source_root=${SOURCE_ROOT:-/opt/elinea-build}
 environment=
 version=$(date -u +%Y.%m.%d-%H%M%S)
 action=deploy
