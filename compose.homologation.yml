@@ -5,6 +5,30 @@ services:
     mem_limit: 512m
     cpus: 0.30
 
+  db-admin:
+    image: adminer@sha256:f742dcf1b6ca95733b54c4e020488ce78f3e774d73543a6ded9b4eaea8974f3d
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    networks: [proxy, backend]
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=elinea-proxy
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.rule=Host(`db.${DOMAIN}`)
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.priority=300
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file,db-admin-auth-${ENVIRONMENT_SLUG}
+      - traefik.http.middlewares.db-admin-auth-${ENVIRONMENT_SLUG}.basicauth.users=elinea:$$apr1$$4lh7XD39$$nw87JQLr8eIvhuBbRd9.H0
+      - traefik.http.services.db-admin-${ENVIRONMENT_SLUG}.loadbalancer.server.port=8080
+      - traefik.http.routers.db-admin-${ENVIRONMENT_SLUG}.service=db-admin-${ENVIRONMENT_SLUG}
+    mem_limit: 128m
+    cpus: 0.10
+
   redis:
     mem_limit: 128m
     cpus: 0.10
