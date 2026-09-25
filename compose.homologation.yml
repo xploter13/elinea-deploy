@@ -1,3 +1,5 @@
+x-api-networks: &api-networks [backend, egress, mailpit]
+
 services:
   mysql:
     mem_limit: 512m
@@ -10,6 +12,7 @@ services:
   api:
     mem_limit: 256m
     cpus: 0.30
+    networks: *api-networks
 
   api-web:
     mem_limit: 48m
@@ -20,10 +23,12 @@ services:
     command: [php, artisan, horizon, --environment=production]
     mem_limit: 128m
     cpus: 0.15
+    networks: *api-networks
 
   scheduler:
     mem_limit: 96m
     cpus: 0.10
+    networks: *api-networks
 
   storefront:
     mem_limit: 256m
@@ -44,3 +49,8 @@ services:
   gestao:
     mem_limit: 48m
     cpus: 0.05
+
+networks:
+  mailpit:
+    name: ${MAILPIT_NETWORK:-mailpit-el1j_default}
+    external: true
