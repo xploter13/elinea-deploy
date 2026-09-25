@@ -53,9 +53,9 @@ x-api: &api-service
     MAIL_PASSWORD: ${MAIL_PASSWORD}
     MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
     MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Elínea}
-    STRIPE_KEY: ${STRIPE_KEY}
-    STRIPE_SECRET: ${STRIPE_SECRET}
-    STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+    STRIPE_KEY: ${STRIPE_KEY:?STRIPE_KEY is required}
+    STRIPE_SECRET: ${STRIPE_SECRET:?STRIPE_SECRET is required}
+    STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:?STRIPE_WEBHOOK_SECRET is required}
     CASHIER_CURRENCY: brl
     CASHIER_CURRENCY_LOCALE: pt_BR
   restart: unless-stopped
@@ -66,7 +66,7 @@ x-api: &api-service
       condition: service_healthy
   volumes:
     - api_storage:/var/www/html/storage
-  networks: [backend]
+  networks: [backend, egress]
   logging: *default-logging
 
 services:
@@ -260,6 +260,7 @@ networks:
     external: true
   backend:
     internal: true
+  egress:
 
 volumes:
   mysql_data:
