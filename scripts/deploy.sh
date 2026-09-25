@@ -134,6 +134,9 @@ fi
 
 if [[ "${SKIP_SOURCE_UPDATE:-0}" != 1 ]]; then
   echo "Atualizando fontes para $branch..."
+  # Git honors the process umask when checking out newly added files. Runtime
+  # images execute as non-root users, so source files must be world-readable.
+  umask 022
   for repository in "${repositories[@]}"; do
     repository_path="$source_root/$repository"
     [[ -d "$repository_path/.git" ]] || fail "repositório ausente: $repository_path"
@@ -147,6 +150,8 @@ if [[ "${SKIP_SOURCE_UPDATE:-0}" != 1 ]]; then
     fi
     git -C "$repository_path" merge --ff-only "origin/$branch"
   done
+  # Keep generated environment files and database backups private.
+  umask 077
 else
   echo "Atualização dos fontes ignorada por SKIP_SOURCE_UPDATE=1."
 fi
