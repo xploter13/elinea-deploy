@@ -1,6 +1,6 @@
 # Deploy Elínea
 
-Deploy de produção permanente e homologação sob demanda para uma VPS Debian 13 com 1 vCPU, 4 GB de RAM e 50 GB. As imagens são construídas local e sequencialmente na VPS, com cache do Docker e 2 GB de swap.
+Deploy de produção permanente e homologação sob demanda para uma VPS Debian 13 com 1 vCPU, 4 GB de RAM e 50 GB. As imagens são construídas pelo GitHub Actions, publicadas no GitHub Container Registry (GHCR) e apenas baixadas pela VPS.
 
 ## Arquivos Compose
 
@@ -28,11 +28,11 @@ Homologação:
 - `gestao.homolog.elinea.com.br`: gestão da plataforma
 - `*.homolog.elinea.com.br`: lojas de teste
 
-No DNS da Cloudflare, aponte todos esses nomes e wildcards para o IPv4 da VPS. O Traefik usa DNS-01 com a API da Cloudflare para emitir os certificados wildcard. Crie um API Token limitado à zona `elinea.com.br`, com `Zone:Read` e `DNS:Edit`, e grave-o em `CF_DNS_API_TOKEN`.
+No DNS da Hostinger, aponte todos esses nomes e wildcards para o IPv4 da VPS. O Traefik usa DNS-01 com a API da Hostinger para emitir os certificados wildcard.
 
-## Build local das imagens
+## Publicação das imagens
 
-Clone os nove repositórios como diretórios irmãos em um workspace persistente. Use `develop` para homologação e `master` para produção. O script gera as sete imagens localmente com duas tags:
+O workflow `.github/workflows/publish-images.yml` baixa os repositórios, gera as seis imagens e publica duas tags para cada imagem:
 
 ```text
 production
@@ -42,66 +42,36 @@ homologation
 homologation-2026.09.10-1
 ```
 
-A primeira acompanha a versão atual do ambiente. A segunda identifica o build e permite rollback enquanto a imagem continuar no cache local. Para um deploy controlado, altere `IMAGE_TAG` no arquivo do ambiente para a tag versionada.
+A primeira acompanha a versão atual do ambiente. A segunda é imutável e permite rollback. Para um deploy controlado, altere `IMAGE_TAG` no arquivo do ambiente para a tag imutável.
 
-Exemplo de workspace:
+Pré-requisitos no GitHub:
 
-```text
-/opt/elinea-build/
-├── elinea-deploy
-├── elinea-api
-├── elinea-admin
-├── elinea-gestao
-├── elinea-storefront
-├── elinea-customer
-├── elinea-sdk
-├── elinea-ui
-└── elinea-site
-```
+1. Crie os repositórios privados `xploter13/elinea-deploy` e `xploter13/elinea-site` e envie os respectivos projetos.
+2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos repositórios `elinea-api`, `elinea-admin`, `elinea-gestao`, `elinea-storefront`, `elinea-sdk`, `elinea-ui` e `elinea-site`.
+3. Nas configurações de Actions do `elinea-deploy`, mantenha a permissão de escrita em Packages para o `GITHUB_TOKEN`.
+4. Faça merge da versão desejada na branch padrão de cada repositório.
+5. Execute manualmente o workflow `Publicar imagens`, selecione `homologation` ou `production` e informe uma versão, como `2026.09.10-1`.
 
-Execute o build a partir do repositório de deploy:
-
-```bash
-./scripts/build-images-local.sh homologation /opt/elinea-build 2026.09.11-1
-./scripts/build-images-local.sh production /opt/elinea-build 2026.09.11-1
-```
-
-O script valida a branch de cada fonte e compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens. Os builds são sequenciais para limitar o uso de memória e CPU.
-
-## Deploy simplificado
-
-O script `scripts/deploy.sh` executa o fluxo completo: verifica alterações locais, atualiza os repositórios na branch correta, constrói as imagens, seleciona uma tag versionada, inicia MySQL e Redis, executa as migrations, sobe os serviços e valida as aplicações.
-
-```bash
-# Publica develop em homologação com uma versão automática
-./scripts/deploy.sh --homologation
-
-# Publica master em produção e solicita confirmação explícita
-./scripts/deploy.sh --production
-
-# Também é possível informar a versão
-./scripts/deploy.sh --production --version 2026.09.11-2
-
-# Desliga homologação preservando bancos e volumes
-./scripts/deploy.sh --homologation --stop
-```
-
-Use `--dry-run` para visualizar o ambiente, a branch e a tag sem executar o deploy. Use `--yes` para confirmar produção em automações, `--source-root /caminho` para indicar os fontes e `--skip-update` para usar os fontes locais. Consulte todas as opções com `--help`. Os argumentos posicionais antigos continuam aceitos.
-
-Antes das migrations de produção, o script cria um dump compactado em `backups/`. Se os fontes estiverem em outro diretório, informe `SOURCE_ROOT=/caminho`. O modo `SKIP_SOURCE_UPDATE=1` existe para builds deliberadamente offline.
+O workflow compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens.
 
 ## Preparação da VPS
 
 1. Instale Docker Engine e o plugin Compose pelo repositório oficial do Docker.
 2. Crie 2 GB de swap e habilite o firewall somente para SSH, 80 e 443.
-3. Clone o `elinea-deploy` e mantenha os fontes no workspace persistente `/opt/elinea-build`.
+3. Clone apenas o repositório `elinea-deploy` na VPS.
 4. Crie a rede compartilhada:
 
 ```bash
 docker network create elinea-proxy
 ```
 
-5. Crie os arquivos de configuração:
+5. Autentique a VPS no GHCR usando um token com `Packages: Read`:
+
+```bash
+echo "$GHCR_TOKEN" | docker login ghcr.io -u xploter13 --password-stdin
+```
+
+6. Crie os arquivos de configuração:
 
 ```bash
 cp .env.example .env.production
@@ -118,10 +88,10 @@ Valide a configuração:
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml config --quiet
 ```
 
-Construa as imagens, suba a infraestrutura, execute as migrations e inicie os serviços:
+Suba a infraestrutura, execute as migrations e inicie os serviços:
 
 ```bash
-./scripts/build-images-local.sh production /opt/elinea-build 2026.09.11-1
+docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml pull
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml up -d mysql redis
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml run --rm api php artisan migrate --force
 docker compose --env-file .env.production -p elinea-production -f compose.yml -f compose.production.yml up -d
@@ -134,7 +104,7 @@ Cadastre no Stripe o webhook `https://api.elinea.com.br/api/v1/webhooks/stripe` 
 Para iniciar:
 
 ```bash
-./scripts/build-images-local.sh homologation /opt/elinea-build 2026.09.11-1
+docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml pull
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml up -d mysql redis
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml run --rm api php artisan migrate --force
 docker compose --env-file .env.homologation -p elinea-homologation -f compose.yml -f compose.homologation.yml up -d
@@ -150,13 +120,13 @@ O comando `down` preserva os volumes e o banco de homologação. Não utilize `d
 
 ## Atualização e rollback
 
-Depois de construir uma nova versão, defina a tag versionada no arquivo do ambiente, por exemplo:
+Depois de publicar uma nova versão, defina a tag imutável no arquivo do ambiente, por exemplo:
 
 ```text
 IMAGE_TAG=production-2026.09.10-2
 ```
 
-Depois execute as migrations e `up -d` usando o comando Compose daquele ambiente. Para rollback, restaure a tag anterior ainda presente no Docker local e repita o processo. Migrations destrutivas precisam ser planejadas separadamente, pois trocar a imagem não desfaz alterações no banco.
+Depois execute `pull`, as migrations e `up -d` usando o comando Compose daquele ambiente. Para rollback, restaure a tag anterior e repita o processo. Migrations destrutivas precisam ser planejadas separadamente, pois trocar a imagem não desfaz alterações no banco.
 
 ## Operação e recursos
 

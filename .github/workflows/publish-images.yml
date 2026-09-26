@@ -1,0 +1,204 @@
+name: Publicar imagens
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Ambiente das imagens
+        required: true
+        type: choice
+        options:
+          - homologation
+          - production
+      version:
+        description: Versão imutável, por exemplo 2026.09.10-1
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: publish-images-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Validar versão e ambiente
+        id: release
+        shell: bash
+        env:
+          RELEASE_ENVIRONMENT: ${{ inputs.environment }}
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          if [[ ! "$RELEASE_VERSION" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+            echo "A versão contém caracteres inválidos."
+            exit 1
+          fi
+
+          if [[ "$RELEASE_ENVIRONMENT" == "production" ]]; then
+            echo "api_url=https://api.elinea.com.br/api/v1" >> "$GITHUB_OUTPUT"
+          else
+            echo "api_url=https://api.homolog.elinea.com.br/api/v1" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "tag=$RELEASE_ENVIRONMENT-$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Baixar configuração de deploy
+        uses: actions/checkout@v4
+        with:
+          path: workspace/elinea-deploy
+
+      - name: Baixar API
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-api
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-api
+
+      - name: Baixar Admin
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-admin
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-admin
+
+      - name: Baixar Gestão
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-gestao
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-gestao
+
+      - name: Baixar Storefront
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-storefront
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-storefront
+
+      - name: Baixar SDK
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-sdk
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-sdk
+
+      - name: Baixar UI
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-ui
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-ui
+
+      - name: Baixar site institucional
+        uses: actions/checkout@v4
+        with:
+          repository: xploter13/elinea-site
+          token: ${{ secrets.REPOSITORIES_TOKEN }}
+          path: workspace/elinea-site
+
+      - name: Preparar contexto dos builds
+        run: cp workspace/elinea-deploy/root.dockerignore workspace/.dockerignore
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Autenticar no GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publicar API PHP-FPM
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace/elinea-api
+          file: workspace/elinea-api/Dockerfile
+          target: app
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-api:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-api:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=api-app
+          cache-to: type=gha,mode=max,scope=api-app
+
+      - name: Publicar Nginx da API
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace/elinea-api
+          file: workspace/elinea-api/Dockerfile
+          target: web
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-api-web:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-api-web:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=api-web
+          cache-to: type=gha,mode=max,scope=api-web
+
+      - name: Publicar site institucional
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace
+          file: workspace/elinea-deploy/docker/static.Dockerfile
+          push: true
+          build-args: |
+            APP_DIR=elinea-site
+            NUXT_PUBLIC_API_BASE=${{ steps.release.outputs.api_url }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-site:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-site:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=site-${{ inputs.environment }}
+          cache-to: type=gha,mode=max,scope=site-${{ inputs.environment }}
+
+      - name: Publicar Admin
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace
+          file: workspace/elinea-deploy/docker/static.Dockerfile
+          push: true
+          build-args: |
+            APP_DIR=elinea-admin
+            NUXT_PUBLIC_API_BASE=${{ steps.release.outputs.api_url }}
+            NUXT_PUBLIC_SITE=default
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-admin:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-admin:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=admin-${{ inputs.environment }}
+          cache-to: type=gha,mode=max,scope=admin-${{ inputs.environment }}
+
+      - name: Publicar Gestão
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace
+          file: workspace/elinea-deploy/docker/static.Dockerfile
+          push: true
+          build-args: |
+            APP_DIR=elinea-gestao
+            NUXT_PUBLIC_API_BASE=${{ steps.release.outputs.api_url }}
+            NUXT_PUBLIC_SITE=default
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-gestao:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-gestao:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=gestao-${{ inputs.environment }}
+          cache-to: type=gha,mode=max,scope=gestao-${{ inputs.environment }}
+
+      - name: Publicar Storefront
+        uses: docker/build-push-action@v6
+        with:
+          context: workspace
+          file: workspace/elinea-deploy/docker/nuxt.Dockerfile
+          push: true
+          build-args: APP_DIR=elinea-storefront
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/elinea-storefront:${{ inputs.environment }}
+            ghcr.io/${{ github.repository_owner }}/elinea-storefront:${{ steps.release.outputs.tag }}
+          cache-from: type=gha,scope=storefront
+          cache-to: type=gha,mode=max,scope=storefront
+

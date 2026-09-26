@@ -22,7 +22,7 @@ case "$environment" in
     ;;
 esac
 
-repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-customer elinea-sdk elinea-ui elinea-site)
+repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-sdk elinea-ui elinea-site)
 for repository in "${repositories[@]}"; do
   repository_path="$source_root/$repository"
   if [[ ! -d "$repository_path/.git" ]]; then
@@ -65,16 +65,9 @@ for app in elinea-admin elinea-gestao; do
     "$source_root"
 done
 
-for app in elinea-storefront elinea-customer; do
-  build_args=()
-  if [[ "$app" == elinea-storefront ]]; then
-    build_args+=(--build-arg NUXT_CUSTOMER_APP_URL=http://customer:3000)
-  fi
-  build_image "$app" \
-    --file "$deploy_root/docker/nuxt.Dockerfile" \
-    --build-arg APP_DIR="$app" \
-    "${build_args[@]}" \
-    "$source_root"
-done
+build_image elinea-storefront \
+  --file "$deploy_root/docker/nuxt.Dockerfile" \
+  --build-arg APP_DIR=elinea-storefront \
+  "$source_root"
 
 echo "Imagens locais criadas com as tags $environment e $environment-$version."

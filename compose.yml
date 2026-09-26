@@ -6,7 +6,7 @@ x-logging: &default-logging
 
 x-api: &api-service
   image: ${REGISTRY_NAMESPACE}/elinea-api:${IMAGE_TAG}
-  pull_policy: never
+  pull_policy: always
   environment:
     APP_NAME: ${APP_NAME}
     APP_ENV: ${APP_ENV}
@@ -53,9 +53,9 @@ x-api: &api-service
     MAIL_PASSWORD: ${MAIL_PASSWORD}
     MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
     MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Elínea}
-    STRIPE_KEY: ${STRIPE_KEY:?STRIPE_KEY is required}
-    STRIPE_SECRET: ${STRIPE_SECRET:?STRIPE_SECRET is required}
-    STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:?STRIPE_WEBHOOK_SECRET is required}
+    STRIPE_KEY: ${STRIPE_KEY}
+    STRIPE_SECRET: ${STRIPE_SECRET}
+    STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
     CASHIER_CURRENCY: brl
     CASHIER_CURRENCY_LOCALE: pt_BR
   restart: unless-stopped
@@ -66,7 +66,7 @@ x-api: &api-service
       condition: service_healthy
   volumes:
     - api_storage:/var/www/html/storage
-  networks: [backend, egress]
+  networks: [backend]
   logging: *default-logging
 
 services:
@@ -101,7 +101,7 @@ services:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
     networks: [backend]
     healthcheck:
-      test: [CMD-SHELL, 'redis-cli -a "$${REDIS_PASSWORD}" ping | grep PONG']
+      test: [CMD-SHELL, "redis-cli -a '$${REDIS_PASSWORD}' ping | grep PONG"]
       interval: 10s
       timeout: 4s
       retries: 10
@@ -118,7 +118,7 @@ services:
 
   api-web:
     image: ${REGISTRY_NAMESPACE}/elinea-api-web:${IMAGE_TAG}
-    pull_policy: never
+    pull_policy: always
     restart: unless-stopped
     depends_on: [api]
     volumes:
@@ -126,11 +126,10 @@ services:
     networks: [proxy, backend]
     labels:
       - traefik.enable=true
-      - traefik.docker.network=elinea-proxy
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.api-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.service=api-${ENVIRONMENT_SLUG}
@@ -153,22 +152,20 @@ services:
 
   storefront:
     image: ${REGISTRY_NAMESPACE}/elinea-storefront:${IMAGE_TAG}
-    pull_policy: never
+    pull_policy: always
     restart: unless-stopped
-    depends_on: [customer, api-web]
+    depends_on: [api-web]
     environment:
       NUXT_API_BASE: http://api-web/api/v1
       NUXT_ELINEA_STORE_SITE: default
       NUXT_TRUST_PROXY_HEADERS: "true"
-      NUXT_CUSTOMER_APP_URL: http://customer:3000
     networks: [proxy, backend]
     labels:
       - traefik.enable=true
-      - traefik.docker.network=elinea-proxy
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.rule=HostRegexp(`^[a-z0-9-]+\.${DOMAIN}$`)
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.priority=10
-      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.storefront-${ENVIRONMENT_SLUG}.loadbalancer.server.port=3000
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.service=storefront-${ENVIRONMENT_SLUG}
@@ -176,22 +173,9 @@ services:
     cpus: ${STOREFRONT_CPU_LIMIT:-0.45}
     logging: *default-logging
 
-  customer:
-    image: ${REGISTRY_NAMESPACE}/elinea-customer:${IMAGE_TAG}
-    pull_policy: never
-    restart: unless-stopped
-    environment:
-      NUXT_API_BASE: http://api-web/api/v1
-      NUXT_ELINEA_STORE_SITE: default
-      NUXT_TRUST_PROXY_HEADERS: "true"
-    networks: [backend]
-    mem_limit: ${CUSTOMER_MEMORY_LIMIT:-384m}
-    cpus: ${CUSTOMER_CPU_LIMIT:-0.40}
-    logging: *default-logging
-
   site:
     image: ${REGISTRY_NAMESPACE}/elinea-site:${IMAGE_TAG}
-    pull_policy: never
+    pull_policy: always
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -199,7 +183,7 @@ services:
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].sans=*.${DOMAIN}
       - traefik.http.routers.site-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
@@ -208,7 +192,7 @@ services:
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.rule=Host(`www.${DOMAIN}`)
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.middlewares=redirect-www-${ENVIRONMENT_SLUG}
       - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
       - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.regex=^https?://www\.(.*)
@@ -220,7 +204,7 @@ services:
 
   admin:
     image: ${REGISTRY_NAMESPACE}/elinea-admin:${IMAGE_TAG}
-    pull_policy: never
+    pull_policy: always
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -228,7 +212,7 @@ services:
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.rule=Host(`admin.${DOMAIN}`)
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.admin-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.service=admin-${ENVIRONMENT_SLUG}
@@ -238,7 +222,7 @@ services:
 
   gestao:
     image: ${REGISTRY_NAMESPACE}/elinea-gestao:${IMAGE_TAG}
-    pull_policy: never
+    pull_policy: always
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -246,7 +230,7 @@ services:
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.rule=Host(`gestao.${DOMAIN}`)
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.gestao-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.service=gestao-${ENVIRONMENT_SLUG}
@@ -260,7 +244,6 @@ networks:
     external: true
   backend:
     internal: true
-  egress:
 
 volumes:
   mysql_data:

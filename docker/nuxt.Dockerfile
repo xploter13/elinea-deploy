@@ -1,8 +1,6 @@
 ARG APP_DIR
 FROM docker.io/library/node:22-alpine AS build
 ARG APP_DIR
-ARG NUXT_CUSTOMER_APP_URL=http://customer:3000
-ENV NUXT_CUSTOMER_APP_URL=$NUXT_CUSTOMER_APP_URL
 WORKDIR /workspace
 COPY elinea-sdk ./elinea-sdk
 COPY elinea-ui ./elinea-ui

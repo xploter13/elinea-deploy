@@ -10,7 +10,7 @@ version=$(date -u +%Y.%m.%d-%H%M%S)
 action=deploy
 dry_run=0
 version_set=0
-repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-customer elinea-sdk elinea-ui elinea-site)
+repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-sdk elinea-ui elinea-site)
 
 usage() {
   cat <<'EOF'
@@ -24,7 +24,7 @@ Flags:
   -e, --env AMBIENTE              production ou homologation.
   -v, --version VERSAO            Tag da versão (padrão: data/hora UTC).
   -y, --yes                       Confirma produção sem prompt.
-  --source-root DIRETORIO         Local dos oito repositórios.
+  --source-root DIRETORIO         Local dos sete repositórios.
   --skip-update                   Usa fontes locais sem fetch.
   --stop                         Desliga somente homologação, preservando dados.
   --dry-run                      Mostra o plano sem alterar arquivos ou serviços.
