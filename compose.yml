@@ -6,7 +6,7 @@ x-logging: &default-logging
 
 x-api: &api-service
   image: ${REGISTRY_NAMESPACE}/elinea-api:${IMAGE_TAG}
-  pull_policy: always
+  pull_policy: never
   environment:
     APP_NAME: ${APP_NAME}
     APP_ENV: ${APP_ENV}
@@ -101,7 +101,7 @@ services:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
     networks: [backend]
     healthcheck:
-      test: [CMD-SHELL, "redis-cli -a '$${REDIS_PASSWORD}' ping | grep PONG"]
+      test: [CMD-SHELL, 'redis-cli --no-auth-warning -a "$$REDIS_PASSWORD" ping | grep -q PONG']
       interval: 10s
       timeout: 4s
       retries: 10
@@ -118,7 +118,7 @@ services:
 
   api-web:
     image: ${REGISTRY_NAMESPACE}/elinea-api-web:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     depends_on: [api]
     volumes:
@@ -152,7 +152,7 @@ services:
 
   storefront:
     image: ${REGISTRY_NAMESPACE}/elinea-storefront:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     depends_on: [api-web]
     environment:
@@ -175,7 +175,7 @@ services:
 
   site:
     image: ${REGISTRY_NAMESPACE}/elinea-site:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -204,7 +204,7 @@ services:
 
   admin:
     image: ${REGISTRY_NAMESPACE}/elinea-admin:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:
@@ -222,7 +222,7 @@ services:
 
   gestao:
     image: ${REGISTRY_NAMESPACE}/elinea-gestao:${IMAGE_TAG}
-    pull_policy: always
+    pull_policy: never
     restart: unless-stopped
     networks: [proxy]
     labels:

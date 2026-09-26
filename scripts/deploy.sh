@@ -215,7 +215,6 @@ done
 "${compose[@]}" exec -T admin wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T gestao wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T storefront wget -qO /dev/null http://127.0.0.1:3000/
-"${compose[@]}" exec -T customer wget -qO /dev/null http://127.0.0.1:3000/login
 "${compose[@]}" ps
 
 echo "Deploy concluído: $environment-$version"
