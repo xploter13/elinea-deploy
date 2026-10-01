@@ -205,7 +205,7 @@ horizon_ready=0
 for attempt in {1..30}; do
   if "${compose[@]}" exec -T horizon php artisan horizon:status; then
     horizon_supervisors=$("${compose[@]}" exec -T horizon php artisan horizon:list --no-ansi)
-    if grep -Eq '\|[[:space:]]*[1-9][0-9]*[[:space:]]*\|[[:space:]]*running' <<< "$horizon_supervisors"; then
+    if grep -Eq '\|[[:space:]]*supervisor-[^|]*\|[[:space:]]*running' <<< "$horizon_supervisors"; then
       horizon_ready=1
       break
     fi
