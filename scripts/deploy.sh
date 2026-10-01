@@ -204,12 +204,15 @@ echo "Validando serviços..."
 horizon_ready=0
 for attempt in {1..30}; do
   if "${compose[@]}" exec -T horizon php artisan horizon:status; then
-    horizon_ready=1
-    break
+    horizon_supervisors=$("${compose[@]}" exec -T horizon php artisan horizon:list --no-ansi)
+    if grep -Eq '\|[[:space:]]*[1-9][0-9]*[[:space:]]*\|[[:space:]]*running' <<< "$horizon_supervisors"; then
+      horizon_ready=1
+      break
+    fi
   fi
   sleep 2
 done
-[[ "$horizon_ready" == 1 ]] || fail "Horizon não iniciou no prazo esperado"
+[[ "$horizon_ready" == 1 ]] || fail "Horizon não iniciou um supervisor no prazo esperado"
 "${compose[@]}" exec -T site wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T api-web wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T admin wget -qO /dev/null http://127.0.0.1/
