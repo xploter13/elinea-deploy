@@ -66,7 +66,7 @@ x-api: &api-service
       condition: service_healthy
   volumes:
     - api_storage:/var/www/html/storage
-  networks: [backend]
+  networks: [backend, egress]
   logging: *default-logging
 
 services:
@@ -246,6 +246,7 @@ networks:
     external: true
   backend:
     internal: true
+  egress:
 
 volumes:
   mysql_data:
