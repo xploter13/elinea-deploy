@@ -28,15 +28,11 @@ Homologação:
 - `gestao.homolog.elinea.com.br`: gestão da plataforma
 - `*.homolog.elinea.com.br`: lojas de teste
 
-No DNS, aponte o domínio do site, `www`, `admin` e `gestao` para a hospedagem compartilhada. Aponte `api` e os wildcards das lojas para o IPv4 da VPS, tanto em produção quanto em homologação. Os registros explícitos do site, do admin e da gestão têm prioridade sobre o wildcard. O Traefik usa DNS-01 com a API da Cloudflare para emitir os certificados wildcard, configurados no serviço `storefront`.
-
-`elinea-site`, `elinea-admin` e `elinea-gestao` são publicados separadamente como arquivos estáticos na hospedagem compartilhada e não fazem parte dos builds ou serviços deste deploy. Mantenha seus domínios em `CORS_ALLOWED_ORIGINS` e a URL do admin em `PANEL_URL` na API.
-
-Ao migrar uma instalação existente, remova os antigos containers dos serviços `site`, `admin` e `gestao` após atualizar o Compose. A publicação na hospedagem compartilhada e a mudança do DNS devem ser realizadas separadamente.
+No DNS da Hostinger, aponte todos esses nomes e wildcards para o IPv4 da VPS. O Traefik usa DNS-01 com a API da Hostinger para emitir os certificados wildcard.
 
 ## Publicação das imagens
 
-O workflow `.github/workflows/publish-images.yml` baixa os repositórios, gera as três imagens e publica duas tags para cada imagem:
+O workflow `.github/workflows/publish-images.yml` baixa os repositórios, gera as seis imagens e publica duas tags para cada imagem:
 
 ```text
 production
@@ -50,13 +46,13 @@ A primeira acompanha a versão atual do ambiente. A segunda é imutável e permi
 
 Pré-requisitos no GitHub:
 
-1. Crie o repositório privado `xploter13/elinea-deploy` e envie o projeto.
-2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos repositórios `elinea-api`, `elinea-storefront`, `elinea-sdk` e `elinea-ui`.
+1. Crie os repositórios privados `xploter13/elinea-deploy` e `xploter13/elinea-site` e envie os respectivos projetos.
+2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos repositórios `elinea-api`, `elinea-admin`, `elinea-gestao`, `elinea-storefront`, `elinea-sdk`, `elinea-ui` e `elinea-site`.
 3. Nas configurações de Actions do `elinea-deploy`, mantenha a permissão de escrita em Packages para o `GITHUB_TOKEN`.
 4. Faça merge da versão desejada na branch padrão de cada repositório.
 5. Execute manualmente o workflow `Publicar imagens`, selecione `homologation` ou `production` e informe uma versão, como `2026.09.10-1`.
 
-O workflow publica as imagens `elinea-api`, `elinea-api-web` e `elinea-storefront`. O storefront recebe a URL interna da API na configuração do container. Nenhum segredo da aplicação é incluído nas imagens.
+O workflow compila cada frontend com a URL da API correspondente ao ambiente. Nenhum segredo da aplicação é incluído nas imagens.
 
 ## Preparação da VPS
 
@@ -134,7 +130,7 @@ Depois execute `pull`, as migrations e `up -d` usando o comando Compose daquele 
 
 ## Operação e recursos
 
-Os limites de memória dos serviços de homologação somam aproximadamente 1,4 GiB, além do Traefik compartilhado. Mesmo assim, ela deve permanecer ligada somente durante os testes, pois o único vCPU será compartilhado com produção.
+A homologação foi limitada a aproximadamente 1,8 GB no pior caso. Mesmo assim, ela deve permanecer ligada somente durante os testes, pois o único vCPU será compartilhado com produção.
 
 Comandos úteis de produção:
 

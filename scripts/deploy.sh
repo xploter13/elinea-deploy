@@ -10,7 +10,7 @@ version=$(date -u +%Y.%m.%d-%H%M%S)
 action=deploy
 dry_run=0
 version_set=0
-repositories=(elinea-api elinea-storefront elinea-sdk elinea-ui)
+repositories=(elinea-api elinea-admin elinea-gestao elinea-storefront elinea-sdk elinea-ui elinea-site)
 
 usage() {
   cat <<'EOF'
@@ -24,7 +24,7 @@ Flags:
   -e, --env AMBIENTE              production ou homologation.
   -v, --version VERSAO            Tag da versão (padrão: data/hora UTC).
   -y, --yes                       Confirma produção sem prompt.
-  --source-root DIRETORIO         Local dos quatro repositórios.
+  --source-root DIRETORIO         Local dos sete repositórios.
   --skip-update                   Usa fontes locais sem fetch.
   --stop                         Desliga somente homologação, preservando dados.
   --dry-run                      Mostra o plano sem alterar arquivos ou serviços.
@@ -213,7 +213,10 @@ for attempt in {1..30}; do
   sleep 2
 done
 [[ "$horizon_ready" == 1 ]] || fail "Horizon não iniciou um supervisor no prazo esperado"
+"${compose[@]}" exec -T site wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T api-web wget -qO /dev/null http://127.0.0.1/
+"${compose[@]}" exec -T admin wget -qO /dev/null http://127.0.0.1/
+"${compose[@]}" exec -T gestao wget -qO /dev/null http://127.0.0.1/
 "${compose[@]}" exec -T storefront wget -qO /dev/null http://127.0.0.1:3000/
 "${compose[@]}" ps
 

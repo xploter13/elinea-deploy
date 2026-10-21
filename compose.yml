@@ -130,7 +130,7 @@ services:
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.rule=Host(`api.${DOMAIN}`)
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.priority=200
-      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
+      - traefik.http.routers.api-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.api-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
       - traefik.http.routers.api-${ENVIRONMENT_SLUG}.service=api-${ENVIRONMENT_SLUG}
@@ -167,14 +167,77 @@ services:
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.rule=HostRegexp(`^[a-z0-9-]+\.${DOMAIN}$`)
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.entrypoints=websecure
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.priority=10
-      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=cloudflare
-      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.domains[0].main=${DOMAIN}
-      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.domains[0].sans=*.${DOMAIN}
+      - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
       - traefik.http.services.storefront-${ENVIRONMENT_SLUG}.loadbalancer.server.port=3000
       - traefik.http.routers.storefront-${ENVIRONMENT_SLUG}.service=storefront-${ENVIRONMENT_SLUG}
     mem_limit: ${STOREFRONT_MEMORY_LIMIT:-384m}
     cpus: ${STOREFRONT_CPU_LIMIT:-0.45}
+    logging: *default-logging
+
+  site:
+    image: ${REGISTRY_NAMESPACE}/elinea-site:${IMAGE_TAG}
+    pull_policy: never
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].main=${DOMAIN}
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.tls.domains[0].sans=*.${DOMAIN}
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.site-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.site-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.rule=Host(`www.${DOMAIN}`)
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.middlewares=redirect-www-${ENVIRONMENT_SLUG}
+      - traefik.http.routers.site-www-${ENVIRONMENT_SLUG}.service=site-${ENVIRONMENT_SLUG}
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.regex=^https?://www\.(.*)
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.replacement=https://$${1}
+      - traefik.http.middlewares.redirect-www-${ENVIRONMENT_SLUG}.redirectregex.permanent=true
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
+    logging: *default-logging
+
+  admin:
+    image: ${REGISTRY_NAMESPACE}/elinea-admin:${IMAGE_TAG}
+    pull_policy: never
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.rule=Host(`admin.${DOMAIN}`)
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.admin-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.admin-${ENVIRONMENT_SLUG}.service=admin-${ENVIRONMENT_SLUG}
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
+    logging: *default-logging
+
+  gestao:
+    image: ${REGISTRY_NAMESPACE}/elinea-gestao:${IMAGE_TAG}
+    pull_policy: never
+    restart: unless-stopped
+    networks: [proxy]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.rule=Host(`gestao.${DOMAIN}`)
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.entrypoints=websecure
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.priority=200
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.tls.certresolver=hostinger
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.middlewares=security-headers@file,compress@file
+      - traefik.http.services.gestao-${ENVIRONMENT_SLUG}.loadbalancer.server.port=80
+      - traefik.http.routers.gestao-${ENVIRONMENT_SLUG}.service=gestao-${ENVIRONMENT_SLUG}
+    mem_limit: ${STATIC_MEMORY_LIMIT:-64m}
+    cpus: ${STATIC_CPU_LIMIT:-0.15}
     logging: *default-logging
 
 networks:
