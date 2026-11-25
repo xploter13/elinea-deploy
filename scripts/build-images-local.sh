@@ -61,7 +61,7 @@ for app in elinea-ecommerce-admin elinea-gestao; do
   [[ "$app" != elinea-ecommerce-admin ]] || image_name=elinea-admin
   build_image "$image_name" \
     --file "$deploy_root/docker/static.Dockerfile" \
-    --build-arg APP_DIR="$app_directory" \
+    --build-arg APP_DIR="$app" \
     --build-arg NUXT_PUBLIC_API_BASE="$api_url" \
     --build-arg NUXT_PUBLIC_SITE=default \
     "$source_root"

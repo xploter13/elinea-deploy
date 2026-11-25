@@ -14,6 +14,7 @@ Este diretório mantém o registro versionável da migração coordenada entre r
 - [Inventário inicial dos repositórios](baseline/repositories.json).
 - [Mapeamento inicial dos componentes do Admin](baseline/admin-components.json).
 - [Progresso e retomada](progress.md).
+- [GitHub, branches e ambientes](github-branches.md).
 
 ## Regras comuns
 

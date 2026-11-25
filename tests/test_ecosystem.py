@@ -67,6 +67,16 @@ class EcosystemContracts(unittest.TestCase):
             self.assertTrue((WORKSPACE / repository / '.git').exists())
         self.assertTrue((WORKSPACE / 'elinea-ecommerce-api/resources/legal/terms-1.1.md').exists())
 
+    def test_release_checkouts_use_the_selected_environment_branch(self):
+        workflow = (DEPLOY / '.github/workflows/publish-images.yml').read_text()
+        checkouts = workflow.split('uses: actions/checkout@v4')[1:]
+        self.assertEqual(len(checkouts), 8)
+        for checkout in checkouts:
+            self.assertIn("ref: ${{ inputs.environment == 'production' && 'master' || 'develop' }}", checkout.split('      - name:')[0])
+        for environment, branch in [('production', 'master'), ('homologation', 'develop')]:
+            result = subprocess.run(['bash', str(DEPLOY / 'scripts/deploy.sh'), '--' + environment, '--dry-run'], check=True, capture_output=True, text=True)
+            self.assertIn('Branch: ' + branch, result.stdout)
+
     def test_existing_image_names_remain_compatible_with_compose(self):
         workflow = (DEPLOY / '.github/workflows/publish-images.yml').read_text()
         compose = (DEPLOY / 'compose.yml').read_text()

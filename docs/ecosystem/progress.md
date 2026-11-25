@@ -52,3 +52,8 @@ O container Nginx foi recriado sem iniciar, mantendo seu estado parado, com o bi
 mount correto em `elinea-ai-api/docker/nginx/default.conf`. Nenhum volume de dados
 foi removido, e os demais serviços continuaram em execução. Os identificadores
 legados dos recursos Docker permanecem para compatibilidade dos dados locais.
+
+
+## Sincronização GitHub — 2026-11-25
+
+Trabalho das fases 1–5 preparado para publicação em `develop`, preservando `master` como produção. A fase 5 continua parcial, conforme os relatórios existentes. A política consta nos AGENTS.md dos nove repositórios e em [github-branches.md](github-branches.md). O Deploy incorporou as correções remotas de produção sem executar deploy. O histórico local divergente com credenciais foi preservado somente em arquivo local; os previews preexistentes do Site não entraram nos commits. A afirmação anterior de que remotos não foram alterados descreve o estado antes desta sincronização autorizada.
