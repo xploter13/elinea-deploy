@@ -1,0 +1,279 @@
+{
+  "repository": "elinea-sdk",
+  "files": [
+    {
+      "status": " M",
+      "path": "README.md"
+    },
+    {
+      "status": " M",
+      "path": "package.json"
+    },
+    {
+      "status": " M",
+      "path": "src/core.ts"
+    },
+    {
+      "status": " M",
+      "path": "src/errors.ts"
+    },
+    {
+      "status": " M",
+      "path": "src/index.ts"
+    },
+    {
+      "status": "??",
+      "path": "AGENTS.md"
+    },
+    {
+      "status": "??",
+      "path": "CHANGELOG.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/extraction-map.json"
+    },
+    {
+      "status": "??",
+      "path": "src/ai.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/admin.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/auth.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/automations.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/banners.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/blog.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/brands.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/catalog.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/configuration.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/coupons.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/integrations.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/inventory.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/merchants.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/messaging.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/notifications.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/orders.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/platform-billing.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/platform-users.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/promotions.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/reports.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/revenue.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/reviews.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/service-terms.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/sites.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/tickets.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/contracts/users.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/authProfile.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/authSecurity.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/automations.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/banners.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/blog.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/brands.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/categories.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/checkout.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/configuration.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/coupons.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/integrations.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/inventory.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/messaging.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/notifications.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/orders.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/platformBilling.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/platformMerchants.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/platformPlans.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/platformUsers.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/products.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/promotions.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/reports.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/revenue.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/reviews.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/serviceTerms.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/shipping.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/sites.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/tickets.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/ecommerce/services/users.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/transport.ts"
+    },
+    {
+      "status": "??",
+      "path": "tests/domains.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "tests/transport.test.ts"
+    }
+  ],
+  "consumersMigrated": [],
+  "removed": []
+}

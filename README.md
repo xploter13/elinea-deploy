@@ -30,7 +30,7 @@ Homologação:
 
 No DNS, aponte o domínio do site, `www`, `admin` e `gestao` para a hospedagem compartilhada. Aponte `api` e os wildcards das lojas para o IPv4 da VPS, tanto em produção quanto em homologação. Os registros explícitos do site, do admin e da gestão têm prioridade sobre o wildcard. O Traefik usa DNS-01 com a API da Cloudflare para emitir os certificados wildcard, configurados no serviço `storefront`.
 
-`elinea-site`, `elinea-admin` e `elinea-gestao` são publicados separadamente como arquivos estáticos na hospedagem compartilhada e não fazem parte dos builds ou serviços deste deploy. Mantenha seus domínios em `CORS_ALLOWED_ORIGINS` e a URL do admin em `PANEL_URL` na API.
+`elinea-site`, `elinea-ecommerce-admin` e `elinea-gestao` são publicados separadamente como arquivos estáticos na hospedagem compartilhada e não fazem parte dos builds ou serviços deste deploy. Mantenha seus domínios em `CORS_ALLOWED_ORIGINS` e a URL do admin em `PANEL_URL` na API.
 
 Ao migrar uma instalação existente, remova os antigos containers dos serviços `site`, `admin` e `gestao` após atualizar o Compose. A publicação na hospedagem compartilhada e a mudança do DNS devem ser realizadas separadamente.
 
@@ -51,12 +51,12 @@ A primeira acompanha a versão atual do ambiente. A segunda é imutável e permi
 Pré-requisitos no GitHub:
 
 1. Crie o repositório privado `xploter13/elinea-deploy` e envie o projeto.
-2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos repositórios `elinea-api`, `elinea-storefront`, `elinea-sdk` e `elinea-ui`.
+2. No repositório `elinea-deploy`, crie o secret `REPOSITORIES_TOKEN` com um fine-grained personal access token que tenha `Contents: Read` nos remotos atuais `elinea-api`, `elinea-storefront`, `elinea-sdk` e `elinea-ui`. Os caminhos locais de checkout usam os novos nomes `elinea-ecommerce-api` e `elinea-ecommerce-storefront`; os remotos não foram renomeados.
 3. Nas configurações de Actions do `elinea-deploy`, mantenha a permissão de escrita em Packages para o `GITHUB_TOKEN`.
 4. Faça merge da versão desejada na branch padrão de cada repositório.
 5. Execute manualmente o workflow `Publicar imagens`, selecione `homologation` ou `production` e informe uma versão, como `2026.09.10-1`.
 
-O workflow publica as imagens `elinea-api`, `elinea-api-web` e `elinea-storefront`. O storefront recebe a URL interna da API na configuração do container. Nenhum segredo da aplicação é incluído nas imagens.
+O workflow mantém os nomes de imagem `elinea-api`, `elinea-api-web` e `elinea-storefront` por compatibilidade com o Compose e versões já publicadas. O storefront recebe a URL interna da API na configuração do container. Nenhum segredo da aplicação é incluído nas imagens.
 
 ## Preparação da VPS
 

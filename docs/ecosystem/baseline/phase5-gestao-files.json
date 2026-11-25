@@ -1,0 +1,290 @@
+{
+  "repository": "elinea-gestao",
+  "scope": "cumulative status since the initial HEAD, including earlier phases",
+  "files": [
+    {
+      "status": " M",
+      "path": "README.md"
+    },
+    {
+      "status": " M",
+      "path": "app/assets/css/main.css"
+    },
+    {
+      "status": " M",
+      "path": "app/components/AreaPanel.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaAreaChart.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaBarChart.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaCard.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaComingSoon.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaDonutChart.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaHorizontalBarChart.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaLineChart.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ElineaPage.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/SparkArea.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/StatusPill.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ui/ElineaEmptyTableState.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ui/ElineaRowActions.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/components/ui/ElineaToggle.vue"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useApiError.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useAuth.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useAuthProfileApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useAuthSecurityApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useBrandsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useCategoriesApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useCheckoutApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useConfigurationApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useCouponsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useIntegrationsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useInventoryApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useNotificationsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useOrdersApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/usePlatformBillingApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/usePlatformMerchantsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/usePlatformPlansApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/usePlatformUsersApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useProductsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/usePromotionsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useReportsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useRevenueApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useReviewsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useServiceTermsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useShippingApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useSitesApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useTicketsApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/composables/useUsersApi.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/brands.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/catalog.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/configuration.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/coupons.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/integrations.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/inventory.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/merchants.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/notifications.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/orders.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/platform-billing.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/platform-users.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/promotions.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/reports.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/revenue.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/reviews.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/service-terms.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/sites.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/tickets.ts"
+    },
+    {
+      "status": " M",
+      "path": "app/types/users.ts"
+    },
+    {
+      "status": " M",
+      "path": "docs/context.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/gestao-financeira.md"
+    },
+    {
+      "status": " M",
+      "path": "nuxt.config.ts"
+    },
+    {
+      "status": " M",
+      "path": "package-lock.json"
+    },
+    {
+      "status": " M",
+      "path": "package.json"
+    },
+    {
+      "status": " M",
+      "path": "yarn.lock"
+    },
+    {
+      "status": "??",
+      "path": "AGENTS.md"
+    },
+    {
+      "status": "??",
+      "path": "tests/sdk-migration.test.mjs"
+    }
+  ]
+}

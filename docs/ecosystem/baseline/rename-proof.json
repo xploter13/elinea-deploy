@@ -1,0 +1,17 @@
+{
+  "elinea-ecommerce-api": {
+    "old": "elinea-api",
+    "head": "72ecee3e979b316416c0d90e4e7d79606edbef2d",
+    "remotes_hash": "482d5929dd5de9aa1e32ca61060da3b6fa27c5631b00cbd643c648f68b3a875c"
+  },
+  "elinea-ecommerce-admin": {
+    "old": "elinea-admin",
+    "head": "2e6e387f631c0735adfd003bdf2aa0c054a77830",
+    "remotes_hash": "131971d08f6e4def6ad34b81a2a9c2e7f4d99d6f5c7d790028d53f7b8877c545"
+  },
+  "elinea-ecommerce-storefront": {
+    "old": "elinea-storefront",
+    "head": "bc4236a48549ca66fed41ae7df119704640b1596",
+    "remotes_hash": "fca05020664c9fca557728b19172ea9827576701ad401437c30214cc281d843e"
+  }
+}

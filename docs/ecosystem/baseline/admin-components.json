@@ -1,0 +1,452 @@
+[
+  {
+    "file": "elinea-admin/app/components/AreaPanel.vue",
+    "lines": 24,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaAreaChart.vue",
+    "lines": 320,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaBarChart.vue",
+    "lines": 95,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaCard.vue",
+    "lines": 18,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 1,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaComingSoon.vue",
+    "lines": 20,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaDonutChart.vue",
+    "lines": 84,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaHorizontalBarChart.vue",
+    "lines": 93,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaLineChart.vue",
+    "lines": 130,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ElineaPage.vue",
+    "lines": 18,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 2,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/SparkArea.vue",
+    "lines": 120,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/StatusPill.vue",
+    "lines": 17,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 1,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/automations/AutomationForm.vue",
+    "lines": 165,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/automations"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/banners/BannerForm.vue",
+    "lines": 101,
+    "nuxt_coupling": [
+      "useApiError",
+      "useBannersApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/banners"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/blog/BlogArticleEditor.vue",
+    "lines": 55,
+    "nuxt_coupling": [
+      "NuxtLink",
+      "navigateTo",
+      "useApiError",
+      "useBlogApi",
+      "useElineaToast",
+      "useState"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/components/blog/BlogArticleForm.vue",
+      "~/types/blog"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/blog/BlogArticleForm.vue",
+    "lines": 99,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/blog"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/brands/BrandForm.vue",
+    "lines": 169,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/brands"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/categories/CategoryCreateForm.vue",
+    "lines": 165,
+    "nuxt_coupling": [
+      "useCategoriesApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/categories/CategoryUpdateForm.vue",
+    "lines": 193,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/customers/CustomerForm.vue",
+    "lines": 252,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/users"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/layout/AppShell.vue",
+    "lines": 729,
+    "nuxt_coupling": [
+      "NuxtLink",
+      "navigateTo",
+      "useApi",
+      "useAuth",
+      "useHead",
+      "useNotificationsApi",
+      "useRoute",
+      "useSettingsPermissions",
+      "useSiteContext",
+      "useSitesApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "vue",
+      "~/components/layout/PlanUpgradeCard.vue",
+      "~/types/configuration",
+      "~/types/notifications",
+      "~/types/sites"
+    ],
+    "slots": 1,
+    "scoped_style": true
+  },
+  {
+    "file": "elinea-admin/app/components/layout/PlanUpgradeCard.vue",
+    "lines": 64,
+    "nuxt_coupling": [
+      "NuxtLink",
+      "usePlatformBillingApi",
+      "usePlatformPlansApi",
+      "useRoute",
+      "useSiteContext"
+    ],
+    "imports": [
+      "~/types/platform-billing",
+      "~/utils/plan-upgrade"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/marketing/MarketingCampaignForm.vue",
+    "lines": 461,
+    "nuxt_coupling": [
+      "useMarketingCampaigns",
+      "useUsersApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/composables/useMarketingCampaigns",
+      "~/types/users"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/orders/OrderCreateForm.vue",
+    "lines": 611,
+    "nuxt_coupling": [
+      "useConfigurationApi",
+      "useProductsApi",
+      "useUsersApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/users",
+      "~/types/catalog",
+      "~/types/configuration"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/orders/OrderEditForm.vue",
+    "lines": 620,
+    "nuxt_coupling": [
+      "useConfigurationApi",
+      "useProductsApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog",
+      "~/types/configuration",
+      "~/types/orders"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/products/ProductContentFields.vue",
+    "lines": 66,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/products/ProductCreateForm.vue",
+    "lines": 627,
+    "nuxt_coupling": [
+      "useBrandsApi",
+      "useCategoriesApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog",
+      "~/types/brands",
+      "~/types/catalog",
+      "./ProductContentFields.vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/products/ProductUpdateForm.vue",
+    "lines": 763,
+    "nuxt_coupling": [
+      "useBrandsApi"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/types/catalog",
+      "~/types/brands",
+      "~/types/catalog",
+      "./ProductContentFields.vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/settings/EmailDeliveryForm.vue",
+    "lines": 291,
+    "nuxt_coupling": [
+      "useConfigurationApi",
+      "useEmailDeliveries"
+    ],
+    "imports": [
+      "~/composables/useEmailDeliveries"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/settings/SettingsTeamContent.vue",
+    "lines": 151,
+    "nuxt_coupling": [
+      "useElineaToast",
+      "useRouter",
+      "useSettingsUsers"
+    ],
+    "imports": [
+      "@lucide/vue",
+      "~/composables/useSettingsUsers"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/settings/SettingsUserForm.vue",
+    "lines": 183,
+    "nuxt_coupling": [
+      "useSettingsUsers"
+    ],
+    "imports": [
+      "~/composables/useSettingsUsers"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaConfirmDialog.vue",
+    "lines": 77,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 1,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaEmptyTableState.vue",
+    "lines": 20,
+    "nuxt_coupling": [],
+    "imports": [
+      "vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaPagination.vue",
+    "lines": 51,
+    "nuxt_coupling": [],
+    "imports": [
+      "@lucide/vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaPanelSkeleton.vue",
+    "lines": 25,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaRowActions.vue",
+    "lines": 44,
+    "nuxt_coupling": [
+      "NuxtLink"
+    ],
+    "imports": [
+      "@lucide/vue"
+    ],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaSkeleton.vue",
+    "lines": 20,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaTableSkeleton.vue",
+    "lines": 18,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": false
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaToast.vue",
+    "lines": 37,
+    "nuxt_coupling": [
+      "useElineaToast"
+    ],
+    "imports": [
+      "~/composables/useElineaToast"
+    ],
+    "slots": 0,
+    "scoped_style": true
+  },
+  {
+    "file": "elinea-admin/app/components/ui/ElineaToggle.vue",
+    "lines": 66,
+    "nuxt_coupling": [],
+    "imports": [],
+    "slots": 0,
+    "scoped_style": true
+  }
+]

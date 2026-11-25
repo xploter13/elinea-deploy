@@ -4,3 +4,7 @@
 .sources/
 backups/*
 !backups/.gitkeep
+
+# Local Python test cache
+__pycache__/
+*.py[cod]

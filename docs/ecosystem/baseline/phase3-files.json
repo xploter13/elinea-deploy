@@ -1,0 +1,235 @@
+{
+  "repository": "elinea-ui",
+  "files": [
+    {
+      "status": " M",
+      "path": "README.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/context.md"
+    },
+    {
+      "status": " M",
+      "path": "eslint.config.js"
+    },
+    {
+      "status": " M",
+      "path": "package.json"
+    },
+    {
+      "status": " M",
+      "path": "src/commerce.ts"
+    },
+    {
+      "status": " M",
+      "path": "src/painel.ts"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront.ts"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontAddToCartButton.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontBannerSlideshow.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontCartItem.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontCartSummary.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontCategoryGrid.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontCommerceProvider.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontProductCard.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontProductGrid.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/storefront/StorefrontProductPage.vue"
+    },
+    {
+      "status": " M",
+      "path": "src/types.ts"
+    },
+    {
+      "status": " M",
+      "path": "tsconfig.json"
+    },
+    {
+      "status": " M",
+      "path": "vite.config.ts"
+    },
+    {
+      "status": " M",
+      "path": "yarn.lock"
+    },
+    {
+      "status": "??",
+      "path": "AGENTS.md"
+    },
+    {
+      "status": "??",
+      "path": "CHANGELOG.md"
+    },
+    {
+      "status": "??",
+      "path": "LICENSE.lucide"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelAreaChart.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelAreaPanel.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelBarChart.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelButton.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelCard.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelComingSoon.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelConfirmDialog.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelDataTable.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelDonutChart.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelEmptyTableState.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelFilterBar.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelHeader.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelHorizontalBarChart.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelInput.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelLineChart.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelNavigation.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelPage.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelPagination.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelPanelSkeleton.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelRowActions.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelShell.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelSidebar.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelSkeleton.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelSparkArea.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelStatusPill.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelTableSkeleton.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelToast.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/PainelToggle.vue"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/icons.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/styles.css"
+    },
+    {
+      "status": "??",
+      "path": "src/painel/types.ts"
+    },
+    {
+      "status": "??",
+      "path": "src/storefront/data.ts"
+    },
+    {
+      "status": "??",
+      "path": "tests/painel.test.ts"
+    },
+    {
+      "status": "??",
+      "path": "tests/storefront-contracts.test.ts"
+    }
+  ],
+  "removed": [],
+  "consumersMigrated": []
+}

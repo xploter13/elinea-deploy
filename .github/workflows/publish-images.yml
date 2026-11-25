@@ -53,14 +53,14 @@ jobs:
         with:
           repository: xploter13/elinea-api
           token: ${{ secrets.REPOSITORIES_TOKEN }}
-          path: workspace/elinea-api
+          path: workspace/elinea-ecommerce-api
 
       - name: Baixar Storefront
         uses: actions/checkout@v4
         with:
           repository: xploter13/elinea-storefront
           token: ${{ secrets.REPOSITORIES_TOKEN }}
-          path: workspace/elinea-storefront
+          path: workspace/elinea-ecommerce-storefront
 
       - name: Baixar SDK
         uses: actions/checkout@v4
@@ -92,8 +92,8 @@ jobs:
       - name: Publicar API PHP-FPM
         uses: docker/build-push-action@v6
         with:
-          context: workspace/elinea-api
-          file: workspace/elinea-api/Dockerfile
+          context: workspace/elinea-ecommerce-api
+          file: workspace/elinea-ecommerce-api/Dockerfile
           target: app
           push: true
           tags: |
@@ -105,8 +105,8 @@ jobs:
       - name: Publicar Nginx da API
         uses: docker/build-push-action@v6
         with:
-          context: workspace/elinea-api
-          file: workspace/elinea-api/Dockerfile
+          context: workspace/elinea-ecommerce-api
+          file: workspace/elinea-ecommerce-api/Dockerfile
           target: web
           push: true
           tags: |
@@ -121,7 +121,7 @@ jobs:
           context: workspace
           file: workspace/elinea-deploy/docker/nuxt.Dockerfile
           push: true
-          build-args: APP_DIR=elinea-storefront
+          build-args: APP_DIR=elinea-ecommerce-storefront
           tags: |
             ghcr.io/${{ github.repository_owner }}/elinea-storefront:${{ inputs.environment }}
             ghcr.io/${{ github.repository_owner }}/elinea-storefront:${{ steps.release.outputs.tag }}

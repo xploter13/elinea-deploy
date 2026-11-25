@@ -1,0 +1,87 @@
+{
+  "app": "gestao",
+  "network": "disabled Docker network; API responses mocked",
+  "results": [
+    {
+      "label": "before",
+      "theme": "light",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-before-light-1440.png"
+    },
+    {
+      "label": "before",
+      "theme": "dark",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-before-dark-1440.png"
+    },
+    {
+      "label": "before",
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-before-light-390.png"
+    },
+    {
+      "label": "after",
+      "theme": "light",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-after-light-1440.png"
+    },
+    {
+      "label": "after",
+      "theme": "dark",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-after-dark-1440.png"
+    },
+    {
+      "label": "after",
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/gestao-verified-final/gestao-after-light-390.png"
+    },
+    {
+      "check": "visual comparison",
+      "theme": "light",
+      "width": 1440,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "0726017af3497f1bb6c9c2fa71042f09a85a4dca0f1c8e4d4b2287ebc7d61148"
+    },
+    {
+      "check": "visual comparison",
+      "theme": "dark",
+      "width": 1440,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "a06057bb7cb6c318bedeffdad6138253f1f6bdf81c167d99019af98b8fa27ab1"
+    },
+    {
+      "check": "visual comparison",
+      "theme": "light",
+      "width": 390,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "36249b9bc75b03b6eef1799b5286f7f724b98ed86923f6faf4fc85bc50e7031c"
+    }
+  ]
+}

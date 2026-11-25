@@ -1,0 +1,304 @@
+[
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/automations.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/automations.ts",
+    "sourceSha256": "a4f124d0f45d459372027a8023104ad3491e593094491dcaed3449eceef51431"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/banners.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/banners.ts",
+    "sourceSha256": "b8bd8fd22308731708c8f7f18621c27278d03146163114516247a1dc03be7b57"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/blog.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/blog.ts",
+    "sourceSha256": "6754fda8a60f9fc7ed854ade15c599eedff10e81ec86ad605a4a111723a79637"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/brands.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/brands.ts",
+    "sourceSha256": "290654efa8d70bafa33f0e84555142d256a2be53f52caa041640a85ad3f18869"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/catalog.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/catalog.ts",
+    "sourceSha256": "2ca55ef1cc1e99c58f7135a0dd8b72e8a0c9ffb4636b3151ecc5c200bfa04a9f"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/configuration.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/configuration.ts",
+    "sourceSha256": "9d72aa53c063d7a67634a5e887db8b717dda1cc05203b65fed73c05ebf6029cf"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/coupons.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/coupons.ts",
+    "sourceSha256": "431c1f760b7e9dd890c95efa2d0badf564d5e367b09785d1f98132be8f714459"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/integrations.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/integrations.ts",
+    "sourceSha256": "40fe0f66bf1a16d3b717c0f2b3813c747c087789c39ae65ee58a1d8bd516ed2e"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/inventory.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/inventory.ts",
+    "sourceSha256": "b4ca238fe15c5edc6d06f2b56e10c9040e22bcdc881a5854f89327289f77815b"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/messaging.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/messaging.ts",
+    "sourceSha256": "92dc2afeeaaef808af803010aaac8d4c606963e160ff62e785b82e881a74b735"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/notifications.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/notifications.ts",
+    "sourceSha256": "0e5413650ab0392c13e604dadbe453fa3e5ee0f6057b8e6d46d8768afd3cf7f2"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/orders.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/orders.ts",
+    "sourceSha256": "ee96324fda428613def189f426f36c257871d230bef022241e83295a0f8e8e81"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/platform-billing.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/platform-billing.ts",
+    "sourceSha256": "ba35c04bff08b76613e196b71853ca2d4147b665034595c6d44cb67acbeb409d"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/promotions.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/promotions.ts",
+    "sourceSha256": "8e2d0b399584927a088b554c543c89dab6bfe5894a7ce06390a37400fa6d707a"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/reports.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/reports.ts",
+    "sourceSha256": "dde1d62f1e06093e485a08bd30f9f0fddfa7ded52a7e3f938ecc8f041c4b370a"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/revenue.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/revenue.ts",
+    "sourceSha256": "c9f1a668483defd0a6e9d5f26e668da1bd7599e962a505ad5f8c75db7a7d8ac8"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/reviews.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/reviews.ts",
+    "sourceSha256": "67c259246e6cf20ffbe2a7f58110e0946cf7c6489183b963fabe3d5759fd326a"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/sites.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/sites.ts",
+    "sourceSha256": "2c3673f095e321cb263560eb4f84ee2bec224d5466b2c975873a88ea2a837bc1"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/tickets.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/tickets.ts",
+    "sourceSha256": "15836b9f37ff537d376281f3068069d7c5cec21b75e7a5929301652e1a80541a"
+  },
+  {
+    "kind": "contract",
+    "source": "elinea-ecommerce-admin/app/types/users.ts",
+    "target": "elinea-sdk/src/ecommerce/contracts/users.ts",
+    "sourceSha256": "b5f2c2cb18e1f21f602e484cfb0ebcc2444513c0476118677f0a838035f38173"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useAuthProfileApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/authProfile.ts",
+    "factory": "createAuthProfileService",
+    "sourceSha256": "d5da22aa7c60ce0932527881f3fb6c4583d0a7cc1823a9b0414f1dd77d7079f6"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useAuthSecurityApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/authSecurity.ts",
+    "factory": "createAuthSecurityService",
+    "sourceSha256": "d40064467ce24a4e1b25094b1b34d4f6f0983a434c9d6135753f2575ceabdf8f"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useAutomationsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/automations.ts",
+    "factory": "createAutomationsService",
+    "sourceSha256": "08815100eef3a5fd22440c2a4ec2f98c995dc10acdc35acbe7f2cfa0985bfa22"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useBannersApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/banners.ts",
+    "factory": "createBannersService",
+    "sourceSha256": "a28ee266ab79650c6e18db3c28de2c4e5722704561c8939ff3209c7ee31732e8"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useBlogApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/blog.ts",
+    "factory": "createBlogService",
+    "sourceSha256": "362922c32c71863db3cdf37520e84b4651928c4bcad719eebee0cbbf9f6ee7fb"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useBrandsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/brands.ts",
+    "factory": "createBrandsService",
+    "sourceSha256": "ebc4a67a7ee0555ee576b7f6594e2b8f071142e38643a68f1236fdfc25bcd3be"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useCategoriesApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/categories.ts",
+    "factory": "createCategoriesService",
+    "sourceSha256": "1b489247071bea8433a95e790d3cd942959966003d4a733c97db1c0947731576"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useCheckoutApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/checkout.ts",
+    "factory": "createCheckoutService",
+    "sourceSha256": "1114c5efe70d465ae1b23a7647091953bdab1b6744b25be5027bb44200eea019"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useConfigurationApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/configuration.ts",
+    "factory": "createConfigurationService",
+    "sourceSha256": "67489ec89bfb6a9197f5b6898ff4a09c99ee1301ad588f82ed5f9a9c39206336"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useCouponsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/coupons.ts",
+    "factory": "createCouponsService",
+    "sourceSha256": "9f2376aa89dcde64f89b03d0abda5806566bc8d9ca7081c771522f12ea24decd"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useIntegrationsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/integrations.ts",
+    "factory": "createIntegrationsService",
+    "sourceSha256": "82ee92e33cc5de01d06326404912f5301b0bac201668c116a14076b74cb6f6f6"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useInventoryApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/inventory.ts",
+    "factory": "createInventoryService",
+    "sourceSha256": "033cd12a2643d55efec7726a8c3d4b440cf0e0828d6f52730b36f26ddffb8c44"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useMessagingApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/messaging.ts",
+    "factory": "createMessagingService",
+    "sourceSha256": "6dbcc33bcc82aa04de065732e03b74178c213de37b7b47271aefd8ab180febaf"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useNotificationsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/notifications.ts",
+    "factory": "createNotificationsService",
+    "sourceSha256": "212f14eeaad22addc8584cf00144a59b9fd3892ccca375554e2f5daaed9e35d4"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useOrdersApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/orders.ts",
+    "factory": "createOrdersService",
+    "sourceSha256": "75bbfe8573b2fc45ae2161e027945592f5d728fc0d2326efabb094b406af0843"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/usePlatformBillingApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/platformBilling.ts",
+    "factory": "createPlatformBillingService",
+    "sourceSha256": "e6fbb235c5fa07b0af7bcb80776d2700449da99509af3151691ebd5b206427d5"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/usePlatformPlansApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/platformPlans.ts",
+    "factory": "createPlatformPlansService",
+    "sourceSha256": "5065190befbc167607329b035d0e5df701941f7b6aa6ff10268a3530902bb2b7"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useProductsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/products.ts",
+    "factory": "createProductsService",
+    "sourceSha256": "d4b7df6ae011533803c486ef5a45f846ceb43161b35f4a6dbf4e75f5457ccd04"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/usePromotionsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/promotions.ts",
+    "factory": "createPromotionsService",
+    "sourceSha256": "dbeaf6578f0408d70d645a868457ed9cc097b2d6bc1e04e882876851eec56671"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useReportsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/reports.ts",
+    "factory": "createReportsService",
+    "sourceSha256": "752737d3a8b405f5cbb641777bbcebc69900df8ff7854c0e47484b7db00fc0f7"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useRevenueApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/revenue.ts",
+    "factory": "createRevenueService",
+    "sourceSha256": "6cff9d025a181a9e412b38f41b100948dfda9018c24dffd6afd3004fbb1817f7"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useReviewsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/reviews.ts",
+    "factory": "createReviewsService",
+    "sourceSha256": "f5feee8bf679817f79854f2d3f8d598fff214d982eb14232f697fdbd8dfdfd26"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useShippingApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/shipping.ts",
+    "factory": "createShippingService",
+    "sourceSha256": "0e2ee2b3edc1b2a96aa7bc251f8bb0e8070feff97b1f861169cf00764365650c"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useSitesApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/sites.ts",
+    "factory": "createSitesService",
+    "sourceSha256": "70ee2e76694792eefd72ca94dd272bb5a871ba974e8bcd11a95668d9af494dcb"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useTicketsApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/tickets.ts",
+    "factory": "createTicketsService",
+    "sourceSha256": "7da01997ec926f034930823063c4640b3283fac25d8ef8b18d8d9ce9aef00d55"
+  },
+  {
+    "kind": "service",
+    "source": "elinea-ecommerce-admin/app/composables/useUsersApi.ts",
+    "target": "elinea-sdk/src/ecommerce/services/users.ts",
+    "factory": "createUsersService",
+    "sourceSha256": "58efa59256592a818dbd29282e56417e5af26fb051f65e76cad385d03653ea69"
+  }
+]

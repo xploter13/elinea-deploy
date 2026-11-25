@@ -1,0 +1,50 @@
+{
+  "repository": "elinea-ai-api",
+  "scope": "cumulative status since the initial HEAD, including earlier phases",
+  "files": [
+    {
+      "status": " M",
+      "path": ".env.example"
+    },
+    {
+      "status": " D",
+      "path": ".idea/elinea-ai-agents.iml"
+    },
+    {
+      "status": " M",
+      "path": ".idea/modules.xml"
+    },
+    {
+      "status": " M",
+      "path": "README.md"
+    },
+    {
+      "status": " M",
+      "path": "composer.json"
+    },
+    {
+      "status": " M",
+      "path": "composer.lock"
+    },
+    {
+      "status": " M",
+      "path": "config/app.php"
+    },
+    {
+      "status": " M",
+      "path": "docs/PLAN.md"
+    },
+    {
+      "status": " M",
+      "path": "docs/openapi.yaml"
+    },
+    {
+      "status": "??",
+      "path": ".idea/elinea-ai-api.iml"
+    },
+    {
+      "status": "??",
+      "path": "AGENTS.md"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ case "$environment" in
     ;;
 esac
 
-repositories=(elinea-api elinea-storefront elinea-sdk elinea-ui)
+repositories=(elinea-ecommerce-api elinea-ecommerce-storefront elinea-sdk elinea-ui)
 for repository in "${repositories[@]}"; do
   repository_path="$source_root/$repository"
   if [[ ! -d "$repository_path/.git" ]]; then
@@ -45,12 +45,12 @@ build_image() {
     "$@"
 }
 
-build_image elinea-api --target app "$source_root/elinea-api"
-build_image elinea-api-web --target web "$source_root/elinea-api"
+build_image elinea-api --target app "$source_root/elinea-ecommerce-api"
+build_image elinea-api-web --target web "$source_root/elinea-ecommerce-api"
 
 build_image elinea-storefront \
   --file "$deploy_root/docker/nuxt.Dockerfile" \
-  --build-arg APP_DIR=elinea-storefront \
+  --build-arg APP_DIR=elinea-ecommerce-storefront \
   "$source_root"
 
 echo "Imagens locais criadas com as tags $environment e $environment-$version."

@@ -1,0 +1,329 @@
+{
+  "baseline": [
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/ElineaAreaChart.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'previous' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'previous' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'afterNext' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'afterNext' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/SparkArea.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderEditForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductUpdateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductUpdateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/composables/useAuth.ts",
+      "code": "TS2322",
+      "message": "Type 'AuthUser | { data?: AuthUser | undefined; } | null' is not assignable to type 'AuthUser | null'."
+    },
+    {
+      "path": "app/pages/account/security.vue",
+      "code": "TS7016",
+      "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-gestao/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+    }
+  ],
+  "current": [
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/orders/OrderEditForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductCreateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductUpdateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/components/products/ProductUpdateForm.vue",
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "path": "app/pages/account/security.vue",
+      "code": "TS7016",
+      "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-gestao/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+    }
+  ],
+  "newFileCodePairs": [],
+  "passing": false,
+  "limitation": "Existing diagnostics and vue-router/volar plugin resolution issue; comparison is not a passing typecheck."
+}

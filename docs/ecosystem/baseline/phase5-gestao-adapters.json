@@ -1,0 +1,28 @@
+{
+  "components": [
+    "ElineaAreaChart.vue",
+    "ElineaHorizontalBarChart.vue",
+    "StatusPill.vue",
+    "ElineaBarChart.vue",
+    "ElineaPage.vue",
+    "AreaPanel.vue",
+    "ElineaComingSoon.vue",
+    "ElineaLineChart.vue",
+    "SparkArea.vue",
+    "ElineaCard.vue",
+    "ElineaDonutChart.vue",
+    "ui/ElineaRowActions.vue",
+    "ui/ElineaToggle.vue"
+  ],
+  "services": "all *Api composables; auth and financial repository still under review",
+  "blockedEndpoint": "DELETE configuration/email-deliveries/{id}: explicit unsupported response, no network mutation",
+  "uiRemaining": [
+    "DataTable",
+    "Button",
+    "FilterSearch",
+    "FilterSelect",
+    "FilterToolbar",
+    "AppShell",
+    "theme consolidation"
+  ]
+}

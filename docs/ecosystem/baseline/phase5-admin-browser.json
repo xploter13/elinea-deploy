@@ -1,0 +1,102 @@
+{
+  "app": "admin",
+  "network": "disabled Docker network; API responses mocked",
+  "results": [
+    {
+      "label": "before",
+      "theme": "light",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-before-light-1440.png"
+    },
+    {
+      "label": "before",
+      "theme": "dark",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-before-dark-1440.png"
+    },
+    {
+      "label": "before",
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-before-light-390.png"
+    },
+    {
+      "label": "after",
+      "theme": "light",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-after-light-1440.png"
+    },
+    {
+      "check": "menu and native modal interactions",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "label": "after",
+      "theme": "dark",
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-after-dark-1440.png"
+    },
+    {
+      "check": "menu and native modal interactions",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "label": "after",
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "horizontalOverflow": false,
+      "screenshot": "/visual/admin-verified-final/admin-after-light-390.png"
+    },
+    {
+      "check": "menu and native modal interactions",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "check": "visual comparison",
+      "theme": "light",
+      "width": 1440,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "a31549cbc302a63a0ba4bbc124abefcfdb5249e081517e5b00b3267c99158650"
+    },
+    {
+      "check": "visual comparison",
+      "theme": "dark",
+      "width": 1440,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "cbb239eea914e9fd68bf7d5817d1f4fd8cb82580f8c805380955d9f54b84abb3"
+    },
+    {
+      "check": "visual comparison",
+      "theme": "light",
+      "width": 390,
+      "changedPixels": 0,
+      "maxChannelDelta": 0,
+      "equalDimensions": true,
+      "sha256": "804752236b75fbe01be2cf88a2154bdce21be563b9cf6f7b614b42496a79409b"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ version=$(date -u +%Y.%m.%d-%H%M%S)
 action=deploy
 dry_run=0
 version_set=0
-repositories=(elinea-api elinea-storefront elinea-sdk elinea-ui)
+repositories=(elinea-ecommerce-api elinea-ecommerce-storefront elinea-sdk elinea-ui)
 
 usage() {
   cat <<'EOF'

@@ -1,0 +1,731 @@
+{
+  "tool": "elinea-ui vue-tsc --noEmit -p tsconfig.json",
+  "baselineSource": "elinea-ecommerce-admin HEAD 2e6e387; archive in /tmp; same node_modules",
+  "baselineErrors": [
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 103,
+      "column": 40,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 103,
+      "column": 55,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 105,
+      "column": 26,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 105,
+      "column": 41,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 110,
+      "column": 10,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 110,
+      "column": 29,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 110,
+      "column": 51,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 111,
+      "column": 10,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 111,
+      "column": 29,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 111,
+      "column": 51,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 116,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 116,
+      "column": 20,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 116,
+      "column": 29,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 117,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 117,
+      "column": 20,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 117,
+      "column": 29,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 120,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 120,
+      "column": 24,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 121,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 121,
+      "column": 24,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 124,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 124,
+      "column": 35,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 125,
+      "column": 10,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 125,
+      "column": 35,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 128,
+      "column": 108,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/ElineaAreaChart.vue",
+      "line": 128,
+      "column": 118,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 34,
+      "column": 40,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 34,
+      "column": 55,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 36,
+      "column": 26,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 36,
+      "column": 41,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 44,
+      "column": 25,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 44,
+      "column": 39,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 44,
+      "column": 48,
+      "code": "TS18048",
+      "message": "'previous' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 45,
+      "column": 25,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 45,
+      "column": 39,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 45,
+      "column": 48,
+      "code": "TS18048",
+      "message": "'previous' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 46,
+      "column": 25,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 46,
+      "column": 36,
+      "code": "TS18048",
+      "message": "'afterNext' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 46,
+      "column": 50,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 47,
+      "column": 25,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 47,
+      "column": 36,
+      "code": "TS18048",
+      "message": "'afterNext' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 47,
+      "column": 50,
+      "code": "TS18048",
+      "message": "'current' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 49,
+      "column": 84,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 49,
+      "column": 94,
+      "code": "TS18048",
+      "message": "'next' is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/SparkArea.vue",
+      "line": 59,
+      "column": 76,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/layout/AppShell.vue",
+      "line": 202,
+      "column": 18,
+      "code": "TS2345",
+      "message": "Argument of type 'Site | { data?: Site | undefined; } | null' is not assignable to parameter of type 'Site | null'."
+    },
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 240,
+      "column": 7,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 240,
+      "column": 39,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 291,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderEditForm.vue",
+      "line": 223,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductCreateForm.vue",
+      "line": 177,
+      "column": 3,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductCreateForm.vue",
+      "line": 177,
+      "column": 50,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductUpdateForm.vue",
+      "line": 315,
+      "column": 3,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductUpdateForm.vue",
+      "line": 315,
+      "column": 50,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/composables/useAuth.ts",
+      "line": 168,
+      "column": 5,
+      "code": "TS2322",
+      "message": "Type 'AuthUser | { data?: AuthUser | undefined; } | null' is not assignable to type 'AuthUser | null'."
+    },
+    {
+      "file": "app/pages/account/security.vue",
+      "line": 2,
+      "column": 20,
+      "code": "TS7016",
+      "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-ecommerce-admin/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+    },
+    {
+      "file": "app/pages/automations/index.vue",
+      "line": 105,
+      "column": 829,
+      "code": "TS2322",
+      "message": "Type '\"info\" | \"success\" | \"warning\" | \"error\"' is not assignable to type '\"info\" | \"success\" | \"warning\" | \"danger\" | \"muted\" | undefined'."
+    },
+    {
+      "file": "app/pages/billing.vue",
+      "line": 110,
+      "column": 30,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 337,
+      "column": 36,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 338,
+      "column": 19,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 382,
+      "column": 19,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 384,
+      "column": 17,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/orders/[id]/edit.vue",
+      "line": 134,
+      "column": 6,
+      "code": "TS2322",
+      "message": "Type '{ id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; coupon_code: string | null; ... 8 more ...; items: { ...; }[]; } | null' is not assignable to type 'Order'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 45,
+      "column": 46,
+      "code": "TS2339",
+      "message": "Property 'order_shipped' does not exist on type '{ pending: string; processing: string; completed: string; cancelled: string; }'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 138,
+      "column": 26,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 141,
+      "column": 5,
+      "code": "TS2322",
+      "message": "Type '{ id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; coupon_code: string | null; ... 8 more ...; items: { ...; }[]; } | undefined' is not assignable to type 'Order | { id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; ... 9 more ...; items: { ...; }[]; } | null'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 249,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 254,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 255,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/settings/[section].vue",
+      "line": 186,
+      "column": 15,
+      "code": "TS2322",
+      "message": "Type 'SettingsValue | undefined' is not assignable to type 'string | number | readonly string[] | null | undefined'."
+    },
+    {
+      "file": "app/pages/settings/[section].vue",
+      "line": 196,
+      "column": 31,
+      "code": "TS2322",
+      "message": "Type 'SettingsValue | undefined' is not assignable to type 'boolean | undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 130,
+      "column": 7,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 130,
+      "column": 40,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 147,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/tickets.vue",
+      "line": 185,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    }
+  ],
+  "currentErrors": [
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 240,
+      "column": 7,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 240,
+      "column": 39,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderCreateForm.vue",
+      "line": 291,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/orders/OrderEditForm.vue",
+      "line": 223,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductCreateForm.vue",
+      "line": 177,
+      "column": 3,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductCreateForm.vue",
+      "line": 177,
+      "column": 50,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductUpdateForm.vue",
+      "line": 315,
+      "column": 3,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/components/products/ProductUpdateForm.vue",
+      "line": 315,
+      "column": 50,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/account/security.vue",
+      "line": 2,
+      "column": 20,
+      "code": "TS7016",
+      "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-ecommerce-admin/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+    },
+    {
+      "file": "app/pages/automations/index.vue",
+      "line": 105,
+      "column": 829,
+      "code": "TS2322",
+      "message": "Type '\"error\" | \"success\" | \"warning\" | \"info\"' is not assignable to type '\"success\" | \"warning\" | \"danger\" | \"info\" | \"muted\" | undefined'."
+    },
+    {
+      "file": "app/pages/billing.vue",
+      "line": 110,
+      "column": 30,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 337,
+      "column": 36,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 338,
+      "column": 19,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 382,
+      "column": 19,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/integrations.vue",
+      "line": 384,
+      "column": 17,
+      "code": "TS18048",
+      "message": "'providerOption' is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/orders/[id]/edit.vue",
+      "line": 134,
+      "column": 6,
+      "code": "TS2322",
+      "message": "Type '{ id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; coupon_code: string | null; ... 8 more ...; items: { ...; }[]; } | null' is not assignable to type 'Order'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 45,
+      "column": 46,
+      "code": "TS2339",
+      "message": "Property 'order_shipped' does not exist on type '{ pending: string; processing: string; completed: string; cancelled: string; }'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 138,
+      "column": 26,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/orders/index.vue",
+      "line": 141,
+      "column": 5,
+      "code": "TS2322",
+      "message": "Type '{ id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; coupon_code: string | null; ... 8 more ...; items: { ...; }[]; } | undefined' is not assignable to type 'Order | { id: number; number: string; status: OrderStatus; subtotal: number; discount_total: number; shipping_total: number; shipping_provider: string | null; total: number; ... 9 more ...; items: { ...; }[]; } | null'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 249,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 254,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/promotions.vue",
+      "line": 255,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    },
+    {
+      "file": "app/pages/settings/[section].vue",
+      "line": 186,
+      "column": 15,
+      "code": "TS2322",
+      "message": "Type 'SettingsValue | undefined' is not assignable to type 'string | number | readonly string[] | null | undefined'."
+    },
+    {
+      "file": "app/pages/settings/[section].vue",
+      "line": 196,
+      "column": 31,
+      "code": "TS2322",
+      "message": "Type 'SettingsValue | undefined' is not assignable to type 'boolean | undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 130,
+      "column": 7,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 130,
+      "column": 40,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/shipping-simulator.vue",
+      "line": 147,
+      "column": 32,
+      "code": "TS2532",
+      "message": "Object is possibly 'undefined'."
+    },
+    {
+      "file": "app/pages/tickets.vue",
+      "line": 185,
+      "column": 3,
+      "code": "TS2322",
+      "message": "Type 'string | null' is not assignable to type 'string'."
+    }
+  ],
+  "newFileCodeCounts": [],
+  "limitation": "Both runs report vue-router/volar/sfc-route-blocks ERR_PACKAGE_PATH_NOT_EXPORTED. Not a passing typecheck; counts compare primary diagnostics, not proof of all type equivalence."
+}

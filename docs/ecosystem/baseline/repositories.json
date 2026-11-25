@@ -1,0 +1,90 @@
+[
+  {
+    "repository": "elinea-admin",
+    "head": "2e6e387f631c0735adfd003bdf2aa0c054a77830",
+    "tracked_files": 259,
+    "status": "",
+    "modules": []
+  },
+  {
+    "repository": "elinea-ai-api",
+    "head": "8dd11534b8089dd05b79207d2b4dc63edc12d41d",
+    "tracked_files": 88,
+    "status": "",
+    "modules": [
+      "Core",
+      "Identity",
+      "Tenancy"
+    ]
+  },
+  {
+    "repository": "elinea-api",
+    "head": "72ecee3e979b316416c0d90e4e7d79606edbef2d",
+    "tracked_files": 845,
+    "status": "",
+    "modules": [
+      "Auth",
+      "Automation",
+      "Billing",
+      "Blog",
+      "CRM",
+      "Catalog",
+      "Configuration",
+      "Customer",
+      "Integration",
+      "Inventory",
+      "Marketing",
+      "Messaging",
+      "Notifications",
+      "Payments",
+      "Platform",
+      "Promotions",
+      "Reports",
+      "Sales",
+      "Support",
+      "Tenant"
+    ]
+  },
+  {
+    "repository": "elinea-deploy",
+    "head": "79bd71f0de9cbbdc6493d2cdf6ccb0b41d27391a",
+    "tracked_files": 17,
+    "status": "",
+    "modules": []
+  },
+  {
+    "repository": "elinea-gestao",
+    "head": "e8ba94f4d97323a9ee6508dc7656a110ceafa33e",
+    "tracked_files": 233,
+    "status": "",
+    "modules": []
+  },
+  {
+    "repository": "elinea-sdk",
+    "head": "f98fc3b2cde4a5e6b59b28865b231249658307c5",
+    "tracked_files": 28,
+    "status": "",
+    "modules": []
+  },
+  {
+    "repository": "elinea-site",
+    "head": "391835b8fe35053f9f8e05b0c15841eaa9ef01ed",
+    "tracked_files": 128,
+    "status": "AD docs/.flow-preview.html\nAD docs/.segment-preview.html\n",
+    "modules": []
+  },
+  {
+    "repository": "elinea-storefront",
+    "head": "bc4236a48549ca66fed41ae7df119704640b1596",
+    "tracked_files": 157,
+    "status": "",
+    "modules": []
+  },
+  {
+    "repository": "elinea-ui",
+    "head": "1b6f6591c2750fe63089f6640ee540d959e0c1dc",
+    "tracked_files": 54,
+    "status": "",
+    "modules": []
+  }
+]
