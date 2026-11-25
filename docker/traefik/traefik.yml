@@ -19,6 +19,12 @@ providers:
     directory: /etc/traefik/dynamic
     watch: true
 certificatesResolvers:
+  letsencrypt:
+    acme:
+      storage: /letsencrypt/acme-http.json
+      httpChallenge:
+        entryPoint: web
+      keyType: EC256
   cloudflare:
     acme:
       email: changeme@elinea.com.br

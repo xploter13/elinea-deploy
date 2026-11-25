@@ -26,3 +26,15 @@ services:
   storefront:
     mem_limit: 256m
     cpus: 0.20
+
+  site:
+    mem_limit: 48m
+    cpus: 0.05
+
+  admin:
+    mem_limit: 48m
+    cpus: 0.05
+
+  gestao:
+    mem_limit: 48m
+    cpus: 0.05

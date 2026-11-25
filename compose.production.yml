@@ -4,6 +4,7 @@ services:
     restart: unless-stopped
     command:
       - --certificatesresolvers.cloudflare.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.letsencrypt.acme.email=${ACME_EMAIL}
     environment:
       CF_DNS_API_TOKEN: ${CF_DNS_API_TOKEN}
     ports:
