@@ -1,0 +1,97 @@
+{
+  "verified_at": "2026-11-25T18:35:56.234132+00:00",
+  "method": "git ls-remote --heads origin; compared to local branch commits",
+  "note": "Snapshot anterior ao commit final deste relatório no Deploy. Nenhuma master existente foi alterada no GitHub; master AI criada a partir de main.",
+  "branches": [
+    {
+      "repository": "elinea-ai-api",
+      "branch": "master",
+      "commit": "8dd11534b8089dd05b79207d2b4dc63edc12d41d"
+    },
+    {
+      "repository": "elinea-ai-api",
+      "branch": "develop",
+      "commit": "09867094c7d850afe8d01af5003bdd5c9694070f"
+    },
+    {
+      "repository": "elinea-deploy",
+      "branch": "master",
+      "commit": "df795ae39fae3fc11cbef8282fe6d3ffd6fb7f03"
+    },
+    {
+      "repository": "elinea-deploy",
+      "branch": "develop",
+      "commit": "46e17c83e2ba7085fd027302b2b99c592c28329b"
+    },
+    {
+      "repository": "elinea-ecommerce-api",
+      "branch": "master",
+      "commit": "507afc3384a7e72dbc5fd3b51e9db9fbd5ad3085"
+    },
+    {
+      "repository": "elinea-ecommerce-api",
+      "branch": "develop",
+      "commit": "a9154b9e13aec0b2c53c2658e6cca2a8cc12054e"
+    },
+    {
+      "repository": "elinea-ecommerce-admin",
+      "branch": "master",
+      "commit": "e7b20c57a7ff1ae819856e8299cf3578c77eb662"
+    },
+    {
+      "repository": "elinea-ecommerce-admin",
+      "branch": "develop",
+      "commit": "33a97f34dde3b26822f2136868d61ff1b71bd127"
+    },
+    {
+      "repository": "elinea-ecommerce-storefront",
+      "branch": "master",
+      "commit": "3a7cb47b17b6ae48eb052ec5c706c0ac2f7de7c4"
+    },
+    {
+      "repository": "elinea-ecommerce-storefront",
+      "branch": "develop",
+      "commit": "5e8fbe7bc6f9f073c6551702ebdd7cb4efbbe477"
+    },
+    {
+      "repository": "elinea-gestao",
+      "branch": "master",
+      "commit": "c7a5131161b28edd26cae4b0288ba51726a11dab"
+    },
+    {
+      "repository": "elinea-gestao",
+      "branch": "develop",
+      "commit": "e05c7c73e48857b40c6dbd0e80f7dffa0deaf160"
+    },
+    {
+      "repository": "elinea-sdk",
+      "branch": "master",
+      "commit": "1356b0693abf33edb640c0fff43c5a42bfbde4a7"
+    },
+    {
+      "repository": "elinea-sdk",
+      "branch": "develop",
+      "commit": "48d99c59a05ed2705f32f0aa1db0381200c23018"
+    },
+    {
+      "repository": "elinea-site",
+      "branch": "master",
+      "commit": "68c24065743a39a5d6501f19ec4cca31933c46cf"
+    },
+    {
+      "repository": "elinea-site",
+      "branch": "develop",
+      "commit": "31b3bbb94588b858a591b8f21c4c79559a291737"
+    },
+    {
+      "repository": "elinea-ui",
+      "branch": "master",
+      "commit": "cc68bf5f91027dc619a54e9592834ab3f44db899"
+    },
+    {
+      "repository": "elinea-ui",
+      "branch": "develop",
+      "commit": "308a152d039ef2c9b7f4a745964d49953624b96e"
+    }
+  ]
+}

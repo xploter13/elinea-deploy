@@ -23,7 +23,7 @@ Atualização autorizada em 2026-11-25. Os nove repositórios permanecem indepen
 
 No AI, `master` foi criada a partir da `main` remota existente; `develop` contém a atualização de nomenclatura e governança. A `main` foi preservada.
 
-No Deploy, as duas branches já existiam no remoto na inspeção. As correções recentes de produção (serviços estáticos e TLS) foram incorporadas à `develop`, preservando os caminhos locais novos. Um commit local antigo de credenciais foi mantido exclusivamente na branch local `archive/develop-local-before-normalization-20261125`; não deve ser publicado nem integrado. A `develop` parte do histórico remoto saneado.
+No Deploy, `master` já existia no GitHub e `develop` foi criada nesta publicação. Havia uma referência local antiga `origin/develop`; ela não comprovava a existência atual da branch no servidor. As correções recentes de produção (serviços estáticos e TLS) foram incorporadas à `develop`, preservando os caminhos locais novos. Um commit local antigo de credenciais foi mantido exclusivamente na branch local `archive/develop-local-before-normalization-20261125`; não deve ser publicado nem integrado. A `develop` parte do histórico remoto saneado.
 
 ## Infraestrutura
 
