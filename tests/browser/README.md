@@ -31,13 +31,6 @@ navegadores. Não atualize a referência para fazer uma divergência passar sem
 investigar as capturas. JSON inclui apenas fixtures fictícias e hashes de imagens.
 
 
-Para a migração parcial da Gestão, use `ELINEA_PRODUCT=gestao` e
-`ELINEA_PANEL_BEFORE_DIR` ou `ELINEA_ADMIN_BEFORE_DIR` apontando ao seu build anterior.
-O harness compara os três cenários visuais. As interações novas de shell/modal só
-são exigidas no Admin, que já adotou esses componentes; a Gestão ainda mantém seu
-layout e confirmações locais. Fixtures de Gestão usam o papel super, sem serviços reais.
-
-
 Para a Gestão, use ELINEA_PANEL_APP=gestao e ELINEA_PANEL_BEFORE_DIR com o build
 anterior correspondente. O harness escolhe a rota real /platform/users; no Admin,
 usa /customers. As chaves de tema próprias de cada app são respeitadas e o estado
@@ -46,8 +39,41 @@ dark/light é verificado antes da captura.
 A comparação permite no máximo 16 pixels alterados e diferença de até 8/255 por
 canal, com dimensões idênticas. Isso cobre pequenas variações de antialias nas
 bordas de gradientes; mudanças de posição, cores ou layout excedem esses limites.
-Os números reais ficam em results.json. Interações de menu/foco modal são
-verificadas no Admin; a Gestão ainda tem componentes exclusivos em consolidação.
+Os números reais ficam em results.json. Menu mobile e Escape são verificados
+nos dois painéis; o foco modal nativo continua coberto somente no Admin.
 
 Imagem e pacote Playwright são fixados na mesma versão, conforme a
 [documentação oficial de Docker](https://playwright.dev/docs/docker).
+
+
+## Paridade estrutural da Gestão
+
+`gestao-ui-parity.mjs` compara HTML normalizado dos componentes anteriores e
+compartilhados, CSS scoped do botão e fonte do tema administrativo. Usa apenas
+esbuild já instalado na Gestão e Vue/compiler-sfc/jsdom já instalados no UI.
+Não requer navegador, sockets ou APIs. Dados e identidade são exemplos fictícios.
+
+Para reproduzir a referência anterior, extraia o diretório app do commit
+`e05c7c73e48857b40c6dbd0e80f7dffa0deaf160` da Gestão para um diretório temporário
+com `git archive`. Informe o diretório **app** extraído:
+
+```sh
+ELINEA_GESTAO_REFERENCE_DIR=/tmp/gestao-reference/app node gestao-ui-parity.mjs
+```
+
+São comparados 20 combinações de botão, dois estados disabled/loading, busca,
+seletor, quatro estados de grid, shell, CSS do botão e fonte do tema: 31 checks.
+O normalizador ignora comentários, whitespace, ordem de classes/atributos e IDs
+de CSS scoped. SVGs decorativos agora são aria-hidden; no shell são normalizados
+o botão de menu acessível, labels de navegação, aria-current e IDs do drawer.
+O padding do menu é compensado pelo CSS da Gestão. Esses ajustes são explícitos
+no script; diferenças restantes falham e gravam os dois resultados para inspeção.
+
+Resultados: `/tmp/elinea-gestao-ui/parity-results.json` ou ELINEA_PARITY_RESULT.
+O bundle compilado e diferenças de diagnóstico ficam em `/tmp/elinea-gestao-ui`.
+
+**Isso não comprova layout, pixels, fontes, overflow ou foco nativo.** A rodada
+atual de navegador está pendente: socket Docker inacessível, Chromium ausente e
+instalação falhou com EAI_AGAIN para cdn.playwright.dev. Para a próxima comparação,
+o build anterior foi preservado localmente em `/tmp/elinea-gestao-ui/build-before`.
+A referência de fonte usada nesta rodada está em `/tmp/elinea-gestao-ui/app-before`.

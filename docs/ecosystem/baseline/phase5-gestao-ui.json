@@ -1,0 +1,414 @@
+{
+  "date": "2026-11-25",
+  "scope": "Fase 5 — widgets, Shell e tema da Gestão",
+  "status": "implemented-awaiting-browser-validation",
+  "files": {
+    "elinea-ui": [
+      {
+        "status": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "status": " M",
+        "path": "README.md"
+      },
+      {
+        "status": " M",
+        "path": "src/painel.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/PainelButton.vue"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/PainelDataTable.vue"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/PainelHeader.vue"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/PainelNavigation.vue"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/PainelPagination.vue"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/README.md"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/icons.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/painel/types.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/painel/PainelDataGrid.vue"
+      },
+      {
+        "status": "??",
+        "path": "src/painel/PainelFilterSearch.vue"
+      },
+      {
+        "status": "??",
+        "path": "src/painel/PainelFilterSelect.vue"
+      },
+      {
+        "status": "??",
+        "path": "src/painel/PainelFilterToolbar.vue"
+      },
+      {
+        "status": "??",
+        "path": "tests/painel-grid.test.ts"
+      }
+    ],
+    "elinea-gestao": [
+      {
+        "status": " M",
+        "path": "app/assets/css/main.css"
+      },
+      {
+        "status": " M",
+        "path": "app/components/layout/AppShell.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaButton.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaDataTable.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaFilterSearch.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaFilterSelect.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaFilterToolbar.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/components/ui/ElineaPagination.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/types/data-grid.ts"
+      },
+      {
+        "status": " M",
+        "path": "nuxt.config.ts"
+      }
+    ],
+    "elinea-deploy": [
+      {
+        "status": " M",
+        "path": "docs/ecosystem/phase-05-consumers.md"
+      },
+      {
+        "status": " M",
+        "path": "docs/ecosystem/progress.md"
+      },
+      {
+        "status": " M",
+        "path": "tests/browser/README.md"
+      },
+      {
+        "status": " M",
+        "path": "tests/browser/admin-regression.mjs"
+      },
+      {
+        "status": "??",
+        "path": "tests/browser/gestao-ui-parity.mjs"
+      }
+    ]
+  },
+  "removedFiles": [],
+  "dependenciesChanged": false,
+  "components": {
+    "added": [
+      "PainelDataGrid",
+      "PainelFilterToolbar",
+      "PainelFilterSearch",
+      "PainelFilterSelect"
+    ],
+    "extended": [
+      "PainelButton",
+      "PainelDataTable",
+      "PainelPagination",
+      "PainelNavigation"
+    ],
+    "adapters": [
+      "ElineaButton",
+      "ElineaDataTable",
+      "ElineaFilterToolbar",
+      "ElineaFilterSearch",
+      "ElineaFilterSelect",
+      "ElineaPagination"
+    ],
+    "themeCompatibility": [
+      "Heading font family Segoe UI",
+      "Sidebar bottom padding 2rem"
+    ]
+  },
+  "checks": {
+    "ui": {
+      "tests": 32,
+      "typecheck": "passed",
+      "build": "passed",
+      "lint": {
+        "errors": 0,
+        "warnings": 20
+      },
+      "commands": [
+        "npm test",
+        "npm run typecheck",
+        "npm run build",
+        "npm run lint"
+      ]
+    },
+    "gestao": {
+      "tests": 39,
+      "build": "passed",
+      "typecheck": {
+        "passed": false,
+        "diagnostics": [
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderEditForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductUpdateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductUpdateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/pages/account/security.vue",
+            "code": "TS7016",
+            "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-gestao/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+          }
+        ],
+        "newFileCodePairs": [],
+        "limitation": "vue-tsc instalado no UI usado via PATH; permanecem nove diagnósticos e vue-router/volar/sfc-route-blocks"
+      },
+      "commands": [
+        "node --test --test-isolation=none tests/*.test.mjs",
+        "npm run build",
+        "PATH=\"../elinea-ui/node_modules/.bin:$PATH\" ./node_modules/.bin/nuxt typecheck"
+      ]
+    },
+    "admin": {
+      "tests": 40,
+      "build": "passed",
+      "commands": [
+        "node --test --test-isolation=none tests/*.test.*",
+        "npm run build"
+      ]
+    },
+    "structuralParity": {
+      "passing": true,
+      "referenceCommit": "e05c7c73e48857b40c6dbd0e80f7dffa0deaf160",
+      "checks": [
+        {
+          "name": "button-primary-xs",
+          "passing": true
+        },
+        {
+          "name": "button-primary-sm",
+          "passing": true
+        },
+        {
+          "name": "button-primary-md",
+          "passing": true
+        },
+        {
+          "name": "button-primary-lg",
+          "passing": true
+        },
+        {
+          "name": "button-outline-xs",
+          "passing": true
+        },
+        {
+          "name": "button-outline-sm",
+          "passing": true
+        },
+        {
+          "name": "button-outline-md",
+          "passing": true
+        },
+        {
+          "name": "button-outline-lg",
+          "passing": true
+        },
+        {
+          "name": "button-ghost-xs",
+          "passing": true
+        },
+        {
+          "name": "button-ghost-sm",
+          "passing": true
+        },
+        {
+          "name": "button-ghost-md",
+          "passing": true
+        },
+        {
+          "name": "button-ghost-lg",
+          "passing": true
+        },
+        {
+          "name": "button-danger-xs",
+          "passing": true
+        },
+        {
+          "name": "button-danger-sm",
+          "passing": true
+        },
+        {
+          "name": "button-danger-md",
+          "passing": true
+        },
+        {
+          "name": "button-danger-lg",
+          "passing": true
+        },
+        {
+          "name": "button-danger-outline-xs",
+          "passing": true
+        },
+        {
+          "name": "button-danger-outline-sm",
+          "passing": true
+        },
+        {
+          "name": "button-danger-outline-md",
+          "passing": true
+        },
+        {
+          "name": "button-danger-outline-lg",
+          "passing": true
+        },
+        {
+          "name": "button-disabled",
+          "passing": true
+        },
+        {
+          "name": "button-loading",
+          "passing": true
+        },
+        {
+          "name": "search",
+          "passing": true
+        },
+        {
+          "name": "select",
+          "passing": true
+        },
+        {
+          "name": "grid-filled",
+          "passing": true
+        },
+        {
+          "name": "grid-empty",
+          "passing": true
+        },
+        {
+          "name": "grid-loading",
+          "passing": true
+        },
+        {
+          "name": "grid-server",
+          "passing": true
+        },
+        {
+          "name": "shell",
+          "passing": true
+        },
+        {
+          "name": "button-scoped-css",
+          "passing": true
+        },
+        {
+          "name": "shared-theme-source",
+          "passing": true
+        }
+      ],
+      "limitation": "Structural SSR and CSS source comparison only; no browser layout, pixels, fonts, overflow or native focus validation.",
+      "referenceSourceHashes": {
+        "components/ui/ElineaButton.vue": "cd398f41d0271a8f7a7f8db6a1ed9ead95636ac9be84f75d85ec305e291762ab",
+        "components/ui/ElineaDataTable.vue": "f063465dfb2851c735e2c220e2d6c0737f36980f086f48a0642de01034318327",
+        "components/ui/ElineaFilterSearch.vue": "473b9b07fc0d619e282dc972aee13611959ab2c71c093db834e2b68f0e45cf78",
+        "components/ui/ElineaFilterSelect.vue": "bf454a15cbf747b66ea9dcf14807be97884498f1522d986fda87d684c3a63641",
+        "components/ui/ElineaFilterToolbar.vue": "c9d084cdc28df882049cd201ed9c107083c6a49e02d54ae64eef54651135f4be",
+        "components/ui/ElineaPagination.vue": "f5d630957316ae05d710939ddeefc06c260d462ee8be575c569f42d0e56ec970"
+      },
+      "command": "ELINEA_GESTAO_REFERENCE_DIR=/tmp/elinea-gestao-ui/app-before node elinea-deploy/tests/browser/gestao-ui-parity.mjs",
+      "normalization": "Comments/whitespace/class-attribute order/scope IDs; decorative SVG aria-hidden; explicit shell menu trigger, labels, active hints, drawer IDs and padding compensated by consumer CSS."
+    },
+    "compiledCss": {
+      "headingCompatibilityRuleAfterSharedTheme": true,
+      "sidebarPaddingPreserved": true
+    },
+    "harnessSyntax": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "browser": {
+    "executed": false,
+    "reason": "Docker socket permission denied; Chromium not installed; temporary Playwright download failed EAI_AGAIN for cdn.playwright.dev.",
+    "referenceBuild": "/tmp/elinea-gestao-ui/build-before",
+    "required": "Pixel comparison, theme/resolution, runtime errors, overflow and mobile menu interaction. SSR/jsdom do not replace browser validation."
+  },
+  "pending": [
+    "Visual acceptance of Gestão widgets/layout/theme",
+    "Review Site and Storefront contracts and migrations",
+    "Phase 5 final acceptance before Core"
+  ],
+  "operations": {
+    "publish": false,
+    "deploy": false,
+    "databaseChanges": false
+  }
+}

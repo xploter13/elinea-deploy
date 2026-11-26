@@ -60,13 +60,15 @@ try {
     assert.equal(horizontalOverflow, false, `${label} document overflows at ${width}px`)
     assert.deepEqual(errors, [], `${label} browser runtime errors`)
     results.push({ label, theme, width, height, errors, horizontalOverflow, screenshot })
-    if (label === 'after' && application === 'ecommerce-admin') {
+    if (label === 'after') {
       if (width < 640) {
         await page.getByRole('button', { name: 'Abrir menu', exact: true }).click()
         assert.equal(await page.locator('input.drawer-toggle').isChecked(), true)
         await page.keyboard.press('Escape')
         assert.equal(await page.locator('input.drawer-toggle').isChecked(), false)
       }
+      results.push({ check: 'shared mobile menu interactions', theme, width })
+      if (application === 'ecommerce-admin') {
       const rowAction = page.getByRole('button', { name: 'Abrir ações do cliente', exact: true })
       await rowAction.scrollIntoViewIfNeeded()
       // Scroll closes floating menus in the original app; settle it before opening.
@@ -83,6 +85,7 @@ try {
       await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click()
       await dialog.waitFor({ state: 'hidden' })
       results.push({ check: 'menu and native modal interactions', theme, width })
+      }
     }
     await context.close()
    }

@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-25",
+  "scope": "Fase 5 — serviço financeiro da Gestão no SDK",
+  "files": {
+    "elinea-sdk": [
+      {
+        "status": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "status": " M",
+        "path": "README.md"
+      },
+      {
+        "status": " M",
+        "path": "docs/extraction-map.json"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/admin.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/services.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/contracts/platform-finance.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/services/platformFinance.ts"
+      },
+      {
+        "status": "??",
+        "path": "tests/platform-finance.test.ts"
+      }
+    ],
+    "elinea-gestao": [
+      {
+        "status": " M",
+        "path": "app/repositories/finance.ts"
+      },
+      {
+        "status": " M",
+        "path": "app/types/finance.ts"
+      },
+      {
+        "status": " M",
+        "path": "tests/finance.test.mjs"
+      }
+    ]
+  },
+  "checks": {
+    "sdk": {
+      "tests": 64,
+      "typecheck": "passed",
+      "build": "passed",
+      "lint": "passed"
+    },
+    "gestao": {
+      "tests": 39,
+      "build": "passed",
+      "typecheck": {
+        "passed": false,
+        "diagnostics": [
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/orders/OrderEditForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductCreateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductUpdateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/components/products/ProductUpdateForm.vue",
+            "code": "TS2532",
+            "message": "Object is possibly 'undefined'."
+          },
+          {
+            "path": "app/pages/account/security.vue",
+            "code": "TS7016",
+            "message": "Could not find a declaration file for module 'qrcode'. '/home/xploter13/htdocs/elinea/elinea-gestao/node_modules/qrcode/lib/index.js' implicitly has an 'any' type."
+          }
+        ],
+        "newFileCodePairs": [],
+        "command": "PATH=\"../elinea-ui/node_modules/.bin:$PATH\" ./node_modules/.bin/nuxt typecheck",
+        "limitation": "vue-tsc ausente na Gestão; executado com binário já instalado no UI. Persistem nove diagnósticos históricos e o erro vue-router/volar/sfc-route-blocks."
+      }
+    }
+  },
+  "visualValidation": {
+    "executed": false,
+    "reason": "Docker socket sem acesso nesta sessão e nenhum Chromium instalado. Nenhuma alteração em componentes, layout ou tema nesta entrega."
+  },
+  "dependenciesChanged": false,
+  "removedFiles": [],
+  "next": "Widgets e layout/tema da Gestão com equivalência visual; revisão Site/Storefront. Fase 5 permanece em andamento."
+}

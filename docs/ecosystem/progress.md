@@ -59,3 +59,35 @@ legados dos recursos Docker permanecem para compatibilidade dos dados locais.
 Trabalho das fases 1–5 preparado para publicação em `develop`, preservando `master` como produção. A fase 5 continua parcial, conforme os relatórios existentes. A política consta nos AGENTS.md dos nove repositórios e em [github-branches.md](github-branches.md). O Deploy incorporou as correções remotas de produção sem executar deploy. O histórico local divergente com credenciais foi preservado somente em arquivo local; os previews preexistentes do Site não entraram nos commits. A afirmação anterior de que remotos não foram alterados descreve o estado antes desta sincronização autorizada.
 
 Publicação concluída nos nove repositórios e 18 referências remotas verificadas com `git ls-remote`, comparadas aos commits locais. Evidência: [snapshot GitHub](baseline/github-branches-20261125.json), anterior ao commit final deste relatório. `master` e `develop` criadas no AI; `develop` criada no Deploy. Nenhuma `master` existente foi alterada remotamente e nenhum deploy foi executado. Os dois previews AD do Site continuam intactos no índice local. Testes desta sincronização: UI 26, SDK 62, nove arquivos Node do Admin, três da Gestão, oito testes Python de infraestrutura aprovados. Admin/Gestão não têm script npm test; suas suítes foram executadas diretamente pelo runner Node. Builds e demais limitações permanecem registrados nos relatórios das fases anteriores.
+
+
+## Retomada da Fase 5 — financeiro (2026-11-25)
+
+Repositório financeiro da Gestão migrado para o SDK, preservando imports locais,
+contratos, cálculos e comportamento. Evidência:
+[phase5-gestao-finance-sdk.json](baseline/phase5-gestao-finance-sdk.json).
+SDK: 64 testes/typecheck/build/lint aprovados. Gestão: 39 testes/build aprovados;
+typecheck mantém nove diagnósticos históricos, sem novos pares arquivo/código.
+A comparação visual não foi executada nesta sessão (socket Docker inacessível e
+Chromium ausente); componentes, layout e tema continuam inalterados e pendentes.
+Próximo trabalho: widgets e layout/tema da Gestão com validação de equivalência;
+concluir revisão e ajustes Site/Storefront antes do Core. A Fase 5 continua aberta.
+
+
+## Retomada da Fase 5 — UI da Gestão (2026-11-25)
+
+Widgets, AppShell e tema da Gestão agora consomem o UI oficial, preservando
+adapters, navegação, tipografia e regras da aplicação. A implementação está
+integrada; aceite visual da rodada permanece pendente. Evidência:
+[phase5-gestao-ui.json](baseline/phase5-gestao-ui.json).
+
+Checks: UI 32 testes/typecheck/build, Gestão 39 testes/build e Admin 40 testes/build
+aprovados. Lint UI sem erros, com 20 warnings. Typecheck da Gestão mantém os nove
+diagnósticos anteriores, sem novos pares arquivo/código. Paridade SSR/CSS: 31 checks.
+Sem Chromium ou acesso a Docker; download falhou por DNS. Essa comparação
+estrutural não substitui o navegador. Build anterior em
+`/tmp/elinea-gestao-ui/build-before` para a próxima comparação visual.
+
+Próximo trabalho: executar aceite visual da Gestão, revisar Site/Storefront e
+resolver as divergências remanescentes de contratos antes de iniciar Core.
+Sem dependências novas, publicação, alteração de banco ou deploy nesta rodada.

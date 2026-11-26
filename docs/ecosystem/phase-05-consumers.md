@@ -157,3 +157,69 @@ Atualização de nomenclatura: o usuário determinou a remoção da pasta antiga
 Ela foi removida após comprovar que só continha diretórios vazios e corrigir o único
 bind mount que poderia recriá-la. O projeto existe somente em `elinea-ai-api`;
 volumes e serviços de dados Docker foram preservados. Ver progress.md.
+
+
+## Retomada — financeiro da Gestão no SDK (2026-11-25)
+
+Concluída a extração do repositório financeiro existente para
+`createPlatformFinanceService`, disponível também em
+`createEcommerceAdminClient().platformFinance`. Foram conferidas as nove rotas do
+FinanceController e seus envelopes na API E-commerce. Nenhum endpoint, cobrança
+ou autoridade Core foi criado.
+
+DTOs financeiros passam a ter fonte oficial no SDK. Os nomes públicos da Gestão
+continuam como reexports; formulários, projeções calculadas, validação e estado
+ficam na aplicação. O adapter preserva seleção POST/PUT por ID, DELETE com 204,
+período e atualização exclusiva das seis premissas de custo dos planos.
+
+Checks desta entrega: SDK com 64 testes, typecheck, build e lint aprovados; Gestão
+com 39 testes e build aprovados. Typecheck da Gestão executado usando o vue-tsc já
+instalado no UI, pois a Gestão não possui o binário local. Mantém os nove
+diagnósticos registrados e o problema do plugin vue-router/volar, sem novos pares
+arquivo/código. O check completo permanece reprovado.
+
+Não houve alteração visual. A sessão não tem acesso ao socket Docker nem Chromium
+instalado; a comparação de navegador não foi executada. Widgets e layout/tema
+permanecem pendentes até sua migração e validação. Site/Storefront também continuam
+pendentes. A Fase 5 não está concluída.
+
+Arquivos criados/alterados e resultados estão em
+[baseline/phase5-gestao-finance-sdk.json](baseline/phase5-gestao-finance-sdk.json).
+Sem arquivos removidos, dependências novas, publicação ou deploy.
+
+
+## Retomada — widgets, Shell e tema da Gestão (2026-11-25)
+
+Implementação integrada, com aceite visual ainda pendente:
+
+- Quatro componentes novos no UI: PainelDataGrid, PainelFilterToolbar,
+  PainelFilterSearch e PainelFilterSelect. DataGrid compõe os recursos oficiais
+  existentes; Button, DataTable e Pagination evoluíram sem substituir contratos.
+- Seis nomes de componentes da Gestão viraram adapters; tipos de grid vêm do UI.
+  NuxtLink, dados, filtros de negócio, autenticação e navegação ficam na aplicação.
+- AppShell compõe PainelShell. `exact` é uma opção genérica de navegação que
+  preserva o destaque exclusivo do item financeiro atual. O botão de menu é
+  acessível por teclado e o Shell mantém fechamento por navegação/Escape.
+- Gestão importa o tema oficial. O CSS local passou de 572 para sete linhas,
+  mantendo somente a fonte histórica dos títulos e o padding inferior do menu.
+  O CSS compilado contém a regra de fonte da Gestão depois da regra compartilhada.
+
+Validação desta rodada: UI com 32 testes/typecheck/build aprovados, lint sem erros
+(20 warnings); Gestão com 39 testes e build aprovados; Admin com 40 testes e build
+aprovados. Typecheck da Gestão mantém os nove diagnósticos históricos e o problema
+do plugin vue-router/volar, sem novo par arquivo/código após a correção do adapter.
+
+O novo harness SSR/CSS aprovou 31 comparações com o fonte anterior, incluindo
+estados de tabela, botões, filtros e shell. Exceções semânticas e normalizações
+estão explícitas no [README do harness](../../tests/browser/README.md). Nenhum
+pacote ou endpoint foi acrescentado. Esses checks permitem revisar a consolidação,
+mas não equivalem a validação visual de layout ou execução de navegador.
+
+Navegador não executado: socket Docker sem acesso, Chromium ausente e download
+falhou por DNS (EAI_AGAIN). O build anterior está preservado em
+`/tmp/elinea-gestao-ui/build-before`; repetir comparação visual e menu mobile
+quando houver ambiente de navegador. Não declarar a Fase 5 concluída.
+
+Evidência, arquivos e comandos em
+[baseline/phase5-gestao-ui.json](baseline/phase5-gestao-ui.json).
+Próximo: aceite visual da Gestão e revisão de serviços/contratos Site/Storefront.
