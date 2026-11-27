@@ -10,6 +10,7 @@ Este diretório mantém o registro versionável da migração coordenada entre r
 - [Consolidação do SDK](phase-04-sdk.md).
 - [Migração dos consumidores](phase-05-consumers.md).
 - [API Core](phase-06-core.md).
+- [Integração da Gestão com o Core](phase-07-gestao.md).
 - [Decisões arquiteturais](adrs/0002-ui-painel.md).
 - [Plano incremental e aceite por fase](migration-plan.md).
 - [Inventário inicial dos repositórios](baseline/repositories.json).

@@ -146,3 +146,12 @@ A suíte do Core passou em PostgreSQL 17.12 com 7 testes e 136 verificações.
 A instância descartável foi encerrada ao fim da execução. Consulte
 [o relatório da Fase 6](phase-06-core.md#aceite-em-postgresql).
 A próxima etapa é a Fase 7, integração da Gestão com o Core.
+
+## Aceite local da Fase 7
+
+A Gestão passou a consumir os contratos administrativos do Core para
+empresas, usuários, catálogo, assinaturas e auditoria. A sessão de operador
+é independente da sessão do E-commerce. A Gestão passou em 40 testes,
+build, geração estática, typecheck e teste no Chromium com a API real.
+Consulte o [relatório da Fase 7](phase-07-gestao.md).
+A próxima etapa é a Fase 8, Hub. Restam seis fases.
