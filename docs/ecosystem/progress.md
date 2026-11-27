@@ -7,7 +7,8 @@
 - Fase 3 concluída para a biblioteca: 28 componentes Painel, tema opt-in, 25 testes e builds UI/Storefront/Site aprovados; ver `phase-03-ui.md`. Validação visual ocorre na migração do Admin (Fase 5).
 - Fase 4 concluída para a biblioteca: clientes independentes, 29 serviços extraídos, 62 testes/typecheck/build/lint aprovados; ver `phase-04-sdk.md`.
 - Fase 5 concluída. O usuário confirmou o aceite visual da Gestão e os resultados finais estão na [matriz de aceite](phase-05-consumers.md#aceite-final-da-fase-5). Histórico da migração: Admin migrado para UI/SDK, layout compartilhado, 40 testes e comparação PNG idêntica em três cenários da tela de Clientes. Typecheck tem 28 diagnósticos anteriores (baseline 75). Gestão com adapters HTTP/auth, 14 componentes compartilhados e 39 testes; ainda há recursos pendentes. Site/Storefront aguardam ajustes restantes; ver `phase-05-consumers.md`.
-- Fases 6–13 ainda não implementadas.
+- Fase 6 concluída. Core e SDK implementados, com suíte da API aprovada em PostgreSQL 17.12. Consulte [o relatório da Fase 6](phase-06-core.md).
+- Fases 7–13 ainda não iniciadas.
 - Produção e remotos não foram alterados.
 
 ## Cuidados obrigatórios
@@ -130,3 +131,18 @@ O usuário confirmou a validação visual da Gestão em seu ambiente.
 A [matriz de aceite](phase-05-consumers.md#aceite-final-da-fase-5) consolida
 a confirmação e os checks registrados de Admin, Gestão, Storefront e Site.
 A próxima etapa é a Fase 6, API Core. Restam oito fases.
+
+## Início da Fase 6
+
+O Core tem repositório próprio e entrega local de sessão, empresas, catálogo,
+assinaturas e direitos de acesso. Cinco testes PHP e 69 testes do SDK passaram.
+Os contratos administrativos HTTP já estão disponíveis no SDK.
+A validação em PostgreSQL foi concluída na rodada de aceite abaixo.
+
+
+## Aceite da Fase 6 em PostgreSQL
+
+A suíte do Core passou em PostgreSQL 17.12 com 7 testes e 136 verificações.
+A instância descartável foi encerrada ao fim da execução. Consulte
+[o relatório da Fase 6](phase-06-core.md#aceite-em-postgresql).
+A próxima etapa é a Fase 7, integração da Gestão com o Core.
