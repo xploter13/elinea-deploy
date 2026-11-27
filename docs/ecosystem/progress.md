@@ -155,3 +155,31 @@ empresas, usuários, catálogo, assinaturas e auditoria. A sessão de operador
 build, geração estática, typecheck e teste no Chromium com a API real.
 Consulte o [relatório da Fase 7](phase-07-gestao.md).
 A próxima etapa é a Fase 8, Hub. Restam seis fases.
+
+## Revisão do Core antes da Fase 8
+
+O Core usa o schema MySQL local do E-commerce com tabelas e histórico de
+migrations `core_`. A Gestão opera vínculos com lojas e tenants da AI.
+O E-commerce continua responsável pelos planos, assinaturas e cobrança.
+A inclusão de um vínculo é idempotente, e sua transferência entre
+empresas exige remoção e novo cadastro auditados.
+
+A suíte do Core passou em SQLite e MySQL 8.4.7 com 6 testes e 120
+verificações em cada banco. No MySQL descartável, as tabelas legadas
+simuladas foram preservadas e os comandos de limpeza foram bloqueados.
+No MySQL legado local, foram aplicadas somente as migrations do Core.
+A estrutura de `users`, `plans`, `subscriptions` e `migrations` foi
+conferida antes e depois da execução.
+
+Na Gestão, passaram os 40 testes, o build e o typecheck. No Chromium,
+o operador vinculou e removeu referências dos dois produtos, consultou
+a auditoria e encerrou a sessão usando o Core no MySQL local.
+
+## Vínculo automático após provisionamento
+
+O proprietário autoriza o produto para uma empresa do Core. O E-commerce
+reserva a autorização no checkout e confirma o vínculo após provisionar
+a loja. A AI reserva no comando interno de criação do tenant e confirma
+após salvar a conta. As confirmações têm chaves separadas por produto e
+pendências persistidas para reprocessamento. O Site oferece a seleção
+da empresa quando a URL do Core está configurada.

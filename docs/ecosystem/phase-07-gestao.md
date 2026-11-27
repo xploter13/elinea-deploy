@@ -1,5 +1,9 @@
 # Fase 7 — Gestão
 
+O catálogo e as assinaturas do Core descritos no aceite original foram
+substituídos por vínculos com lojas e tenants antes da Fase 8. Consulte
+[a revisão do Core](progress.md#revisão-do-core-antes-da-fase-8).
+
 A aplicação existente `elinea-gestao` integra a área `/ecossistema` ao
 Core. O painel usa os componentes de `@elinea/ui/painel` e os contratos
 de `@elinea/sdk/core`.
