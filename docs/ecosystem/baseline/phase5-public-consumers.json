@@ -1,0 +1,255 @@
+{
+  "date": "2026-11-27",
+  "scope": "Fase 5 — API pública do Site e recuperação de senha do Storefront",
+  "files": {
+    "elinea-sdk": [
+      {
+        "status": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "status": " M",
+        "path": "README.md"
+      },
+      {
+        "status": " M",
+        "path": "src/client.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/admin.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/contracts/auth.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/contracts/service-terms.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/services.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/services/platformPlans.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/ecommerce/services/serviceTerms.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/index.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/contracts/public-commerce.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/public.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/services/implementationCheckouts.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/ecommerce/services/passwordRecovery.ts"
+      },
+      {
+        "status": "??",
+        "path": "tests/public-commerce.test.ts"
+      }
+    ],
+    "elinea-site": [
+      {
+        "status": " M",
+        "path": "app/components/pricing/CheckoutModal.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/composables/usePublicPlans.ts"
+      },
+      {
+        "status": " M",
+        "path": "app/composables/useServiceTerms.ts"
+      },
+      {
+        "status": " M",
+        "path": "app/data/plans.ts"
+      },
+      {
+        "status": " M",
+        "path": "app/pages/compra-concluida.vue"
+      },
+      {
+        "status": " M",
+        "path": "app/pages/contratar-loja.vue"
+      },
+      {
+        "status": " M",
+        "path": "nuxt.config.ts"
+      },
+      {
+        "status": "??",
+        "path": "app/composables/usePublicCommerceApi.ts"
+      },
+      {
+        "status": "??",
+        "path": "tests/sdk-migration.test.mjs"
+      }
+    ],
+    "elinea-ecommerce-storefront": [
+      {
+        "status": " M",
+        "path": "server/utils/password-reset.ts"
+      },
+      {
+        "status": "??",
+        "path": "tests/password-recovery-sdk.test.mjs"
+      }
+    ],
+    "elinea-deploy": [
+      {
+        "status": " M",
+        "path": "docs/ecosystem/phase-05-consumers.md"
+      },
+      {
+        "status": " M",
+        "path": "docs/ecosystem/progress.md"
+      }
+    ]
+  },
+  "removedFiles": [],
+  "dependenciesChanged": false,
+  "implementation": {
+    "sdk": [
+      "createEcommercePublicClient on root/ecommerce entries",
+      "PublicPlan/PublishedServiceTerm/PublicMerchantApplication/ImplementationCheckoutPayload contracts",
+      "Implementation checkout service over existing endpoints",
+      "Shared password recovery wire service for Admin/customer"
+    ],
+    "site": [
+      "usePublicCommerceApi composes public SDK",
+      "Plans/terms/checkout creation/status use SDK",
+      "HTTP types reexport SDK; presentation stays local"
+    ],
+    "storefront": [
+      "Nitro password forwarding uses SDK; existing unauthenticated body/error contract preserved"
+    ],
+    "apiReferences": [
+      "elinea-ecommerce-api/app/Modules/Platform/Routes/api.php",
+      "elinea-ecommerce-api/app/Modules/Platform/Http/Controllers/ImplementationCheckoutController.php",
+      "elinea-ecommerce-api/app/Modules/Platform/Http/Requests/CreateImplementationCheckoutRequest.php",
+      "elinea-ecommerce-api/app/Modules/Platform/Http/Resources/PlanResource.php",
+      "elinea-ecommerce-api/app/Modules/Platform/Http/Resources/MerchantApplicationResource.php",
+      "elinea-ecommerce-api/app/Modules/Platform/Http/Resources/ServiceTermResource.php",
+      "elinea-ecommerce-api/app/Modules/Auth/Routes/api.php"
+    ]
+  },
+  "checks": {
+    "sdk": {
+      "tests": 68,
+      "typecheck": "passed",
+      "build": "passed",
+      "lint": "passed",
+      "commands": [
+        "npm test",
+        "npm run typecheck",
+        "npm run build",
+        "npm run lint"
+      ]
+    },
+    "site": {
+      "tests": 22,
+      "typecheckBefore": "passed",
+      "typecheckAfter": "passed",
+      "build": "passed",
+      "staticRoutes": 38,
+      "commands": [
+        "node --test --test-isolation=none tests/*.test.cjs tests/sdk-migration.test.mjs",
+        "npm run typecheck",
+        "NUXT_PUBLIC_API_BASE=https://api.elinea.com.br/api/v1 npm run build"
+      ],
+      "initialBuild": "Existing production guard rejected local HTTP API configuration; final build uses documented public HTTPS API without changing .env."
+    },
+    "storefront": {
+      "tests": 31,
+      "typecheckBefore": "passed",
+      "typecheckAfter": "passed",
+      "build": "passed",
+      "commands": [
+        "node --test --test-isolation=none tests/checkout-routes.test.mjs tests/checkout-shipping.test.mjs tests/payment-routes.test.mjs tests/transparent-payment-routes.test.mjs tests/transparent-checkout.test.mjs tests/password-recovery-sdk.test.mjs",
+        "npm run typecheck",
+        "npm run build"
+      ],
+      "notExecuted": "Full SSR acceptance requires fixture sockets. Attempt including catalog-mode was blocked by listen EPERM on 127.0.0.1; socket-free tests rerun separately."
+    },
+    "admin": {
+      "regressionTests": 40,
+      "command": "node --test --test-isolation=none tests/*.test.*"
+    },
+    "gestao": {
+      "regressionTests": 39,
+      "command": "node --test --test-isolation=none tests/*.test.mjs"
+    },
+    "presentationSource": {
+      "checks": [
+        {
+          "repository": "elinea-site",
+          "path": "app/components/pricing/CheckoutModal.vue",
+          "templateAndStylesUnchanged": true,
+          "sha256": "f5b96478f5568231d3142c7dde06b872581bff1713e512f4a7e784e9b8733586"
+        },
+        {
+          "repository": "elinea-site",
+          "path": "app/pages/contratar-loja.vue",
+          "templateAndStylesUnchanged": true,
+          "sha256": "91908d8582cd9267debecbf868ae62f6becab209714468177779ecc044e666a5"
+        },
+        {
+          "repository": "elinea-site",
+          "path": "app/pages/compra-concluida.vue",
+          "templateAndStylesUnchanged": true,
+          "sha256": "aebcb6bbe486b4734a1ff551aca9cee8ebdc7d297e9978961b33bc905edfe20a"
+        }
+      ],
+      "storefrontAppAndVisualAssetsUnchanged": true
+    },
+    "gitDiffCheck": "passed"
+  },
+  "testCoverage": [
+    "Anonymous client ignores private config fields and omits cookies",
+    "Pagination, uncached terms and version encoding",
+    "Exact checkout consent/return URLs and snake_case payload",
+    "Changing prices/terms prevents checkout creation",
+    "422 field errors preserve local form feedback",
+    "Failed checkout POST does not retry",
+    "Customer password payload and Admin trim preserved",
+    "Nitro recovery mapping for 422/429/network 502"
+  ],
+  "preservedLocalChanges": [
+    "elinea-site/docs/.flow-preview.html (AD)",
+    "elinea-site/docs/.segment-preview.html (AD)"
+  ],
+  "remaining": [
+    "Visual acceptance of Gestão",
+    "Storefront SSR/browser checks in environment allowing sockets",
+    "Phase 5 final acceptance matrix before Core"
+  ],
+  "operations": {
+    "apiChanges": false,
+    "paymentProviderChanges": false,
+    "databaseChanges": false,
+    "push": false,
+    "deploy": false
+  },
+  "limitations": "Build/typecheck/unit and source-equivalence checks do not prove production integrations or browser rendering. Storefront retains its own visual identity and per-store customization."
+}

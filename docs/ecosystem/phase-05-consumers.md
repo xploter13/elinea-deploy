@@ -1,4 +1,4 @@
-# Fase 5 — Migração dos consumidores (em andamento)
+# Fase 5 — Migração dos consumidores
 
 ## Objetivo e alcance atual
 
@@ -223,3 +223,108 @@ quando houver ambiente de navegador. Não declarar a Fase 5 concluída.
 Evidência, arquivos e comandos em
 [baseline/phase5-gestao-ui.json](baseline/phase5-gestao-ui.json).
 Próximo: aceite visual da Gestão e revisão de serviços/contratos Site/Storefront.
+
+
+## Retomada — Site e recuperação de senha do Storefront (2026-11-27)
+
+Migradas as chamadas de API restantes identificadas no Site: planos públicos,
+termos atuais/versionados, criação e consulta de contratação. O novo
+createEcommercePublicClient reutiliza os serviços de planos e termos existentes,
+com config restrita, credentials=omit e sem sessão administrativa/tenant/segredos.
+O serviço de contratação usa somente as rotas conferidas no backend. DTOs HTTP
+ficam no SDK; apresentação de planos, validação, aceite, atualização de preços,
+redirecionamento e polling continuam no Site. Nenhuma integração Stripe foi
+substituída; o cliente fala apenas com a API E-commerce existente.
+
+A recuperação de senha do Storefront agora usa o SDK no Nitro. As rotas públicas
+reais de recuperação não exigem site/token, e o proxy preserva esse comportamento,
+mensagens e mapa de status/erros de campo. A implementação de transporte é
+compartilhada com o Admin, mantendo o trim de e-mail específico desse consumidor.
+
+Revisão das fronteiras: no Site, o fetch restante é de assets da apresentação,
+sem duplicação de serviço de negócio. No Storefront, chamadas do navegador para
+rotas BFF /api continuam locais: Nitro cuida de cookies/hostname e chama o SDK.
+O navegador não passa a acessar a API proprietária diretamente. O as any legado
+na criação do cliente Nitro não foi generalizado para os contratos novos.
+
+Checks executados: SDK com 68 testes, typecheck/build/lint aprovados; Site com 22
+testes, typecheck e build estático com 38 rotas aprovados; Storefront com 31 testes
+de handlers/contratos sem sockets, typecheck e build aprovados. Admin e Gestão:
+40 e 39 testes de regressão aprovados. Os typechecks do Site/Storefront passaram
+antes e depois desta entrega.
+
+O primeiro build do Site foi interrompido corretamente pela proteção já existente
+contra API HTTP local em produção. A execução final passou com
+NUXT_PUBLIC_API_BASE=https://api.elinea.com.br/api/v1, sem alterar .env ou publicar.
+O runner incluindo catalog-mode não pôde executar por listen EPERM em 127.0.0.1;
+os testes sem sockets foram executados separadamente. A suíte SSR completa e o
+aceite visual da Gestão continuam pendentes por restrições do ambiente/Docker.
+Não tratar falha de infraestrutura como aprovação ou regressão de aplicação.
+
+Preservação visual: templates/estilos das três páginas/componentes alterados no
+Site são idênticos ao HEAD anterior; nenhum arquivo da aplicação visual, temas,
+assets ou estilos do Storefront foi alterado. Foram preservados os dois previews
+AD do Site. Essa conferência de fonte não substitui os checks de navegador ainda
+pendentes na Fase 5.
+
+Arquivos, comandos, resultados e limites em
+[baseline/phase5-public-consumers.json](baseline/phase5-public-consumers.json).
+Nenhuma dependência nova, endpoint inventado, alteração de banco, push ou deploy.
+Próximo: executar os checks visuais/SSR pendentes e revisar o aceite final da Fase 5.
+
+## Aceite SSR do Storefront
+
+O Storefront agora tem um build de teste com o preset Node Listener do Nitro.
+As cinco suítes existentes executam a renderização compilada em processos
+isolados, usando requisições em memória e uma API fictícia. A saída de teste
+fica em `.output-ssr-test`. O runner usa `node-mock-http`, já presente na árvore
+de dependências, agora declarado diretamente como dependência de desenvolvimento.
+
+O build de teste e os 17 cenários SSR passaram. A cobertura inclui banners
+e blog por hostname, avaliações de produtos, telefones e modo catálogo.
+A fixture de catálogo passou a fornecer `whatsapp_phone` separado de
+`contact_phone`. Isso corrige as duas falhas históricas de WhatsApp sem
+alterar a vitrine ou suas verificações. O build padrão também passou.
+
+O aceite SSR cobre HTML, status e redirecionamentos do Nitro em memória.
+A execução por HTTP real permanece indisponível nesta sessão por `listen EPERM`.
+A comparação visual da Gestão continua pendente. O ambiente não tem Chromium
+e o socket Docker está inacessível. A Fase 5 segue aberta.
+
+## Typecheck do Admin e da Gestão
+
+Admin e Gestão passaram no typecheck do Nuxt com o `vue-tsc` já instalado
+no UI (`PATH="../elinea-ui/node_modules/.bin:$PATH" ./node_modules/.bin/nuxt typecheck`).
+A execução retornou código zero nos dois repositórios. O aviso de resolução
+do plugin `vue-router/volar/sfc-route-blocks` ainda aparece com Vue Router 4.
+
+Ajustes em Admin e Gestão nos formulários de pedidos e produtos tratam listas
+vazias e variações removidas. Cada aplicação recebeu uma declaração de tipos
+para a operação de geração de QR code que já utiliza. No Admin, os ajustes
+também cobrem seleção de planos e pedidos, simulador de frete, status de
+automações, opções de integração e campos de configurações, promoções e tickets.
+No SDK, `PublicPlan` requer `product_limit` e `sort_order`, conforme o
+`PlanResource` da API. Não houve troca de dependências.
+
+Passaram os 40 testes do Admin, 39 da Gestão e 68 do SDK. Os builds dos
+dois painéis e os typechecks do SDK e do Site também passaram.
+O aceite visual da Gestão segue pendente por falta de navegador e acesso ao Docker.
+
+
+## Aceite final da Fase 5
+
+O usuário confirmou que a validação visual da Gestão rodou corretamente
+em seu ambiente. O aceite visual fica registrado como confirmação do
+usuário. Esta sessão não coletou capturas ou medições dessa execução.
+
+| Consumidor | Resultado de aceite |
+| --- | --- |
+| Admin | UI e SDK integrados. Build, typecheck e 40 testes aprovados. Comparação visual automatizada da tela de Clientes registrada nas rodadas anteriores. |
+| Gestão | UI, tema, shell, widgets e financeiro integrados. Build, typecheck, 39 testes e 31 comparações estruturais aprovados. Validação visual confirmada pelo usuário. |
+| Storefront | SDK integrado no Nitro, com identidade visual preservada. Build, typecheck, 31 testes de regressão e 17 cenários SSR em memória aprovados. |
+| Site | SDK integrado para planos, termos e contratação. Build estático, typecheck e 22 testes aprovados. |
+
+O aviso do plugin Vue Router/Volar continua nos painéis, com código de
+saída zero nos typechecks. Os cenários SSR do Storefront exercitaram o
+Nitro compilado com API fictícia em memória. A Fase 5 está concluída.
+A próxima entrega é a Fase 6, API Core.

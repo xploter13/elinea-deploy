@@ -6,7 +6,7 @@
 - Fase 2 concluída: renomeações locais e referências validadas, histórico/remotos preservados; ver `phase-02-reorganization.md`.
 - Fase 3 concluída para a biblioteca: 28 componentes Painel, tema opt-in, 25 testes e builds UI/Storefront/Site aprovados; ver `phase-03-ui.md`. Validação visual ocorre na migração do Admin (Fase 5).
 - Fase 4 concluída para a biblioteca: clientes independentes, 29 serviços extraídos, 62 testes/typecheck/build/lint aprovados; ver `phase-04-sdk.md`.
-- Fase 5 em andamento: Admin migrado para UI/SDK, layout compartilhado, 40 testes e comparação PNG idêntica em três cenários da tela de Clientes. Typecheck tem 28 diagnósticos anteriores (baseline 75). Gestão com adapters HTTP/auth, 14 componentes compartilhados e 39 testes; ainda há recursos pendentes. Site/Storefront aguardam ajustes restantes; ver `phase-05-consumers.md`.
+- Fase 5 concluída. O usuário confirmou o aceite visual da Gestão e os resultados finais estão na [matriz de aceite](phase-05-consumers.md#aceite-final-da-fase-5). Histórico da migração: Admin migrado para UI/SDK, layout compartilhado, 40 testes e comparação PNG idêntica em três cenários da tela de Clientes. Typecheck tem 28 diagnósticos anteriores (baseline 75). Gestão com adapters HTTP/auth, 14 componentes compartilhados e 39 testes; ainda há recursos pendentes. Site/Storefront aguardam ajustes restantes; ver `phase-05-consumers.md`.
 - Fases 6–13 ainda não implementadas.
 - Produção e remotos não foram alterados.
 
@@ -91,3 +91,42 @@ estrutural não substitui o navegador. Build anterior em
 Próximo trabalho: executar aceite visual da Gestão, revisar Site/Storefront e
 resolver as divergências remanescentes de contratos antes de iniciar Core.
 Sem dependências novas, publicação, alteração de banco ou deploy nesta rodada.
+
+
+## Retomada da Fase 5 — Site/Storefront (2026-11-27)
+
+Site usa o SDK para planos, termos e contratação pública. Storefront usa o SDK
+para recuperação de senha pelo Nitro, mantendo sua identidade visual e contextos.
+Evidência: [phase5-public-consumers.json](baseline/phase5-public-consumers.json).
+SDK: 68 testes/typecheck/build/lint aprovados; Site: 22 testes/typecheck/build (38
+rotas estáticas) aprovados; Storefront: 31 testes sem sockets/typecheck/build
+aprovados. Regressão dos painéis: Admin 40 testes e Gestão 39 aprovados.
+
+Templates/estilos do Site preservados e nenhum arquivo visual do Storefront
+alterado. Chamadas locais BFF e carregamento de assets permanecem nas aplicações.
+Typechecks Site/Storefront passaram antes e depois. Mantidos os previews AD.
+A fase continua aberta: falta navegador da Gestão e suítes SSR com sockets,
+bloqueadas nesta sessão por permissões de rede/Docker. Sem Core ou publicação.
+
+## Retomada da Fase 5 — SSR do Storefront
+
+As cinco suítes SSR do Storefront passaram com 17 cenários usando o Nitro
+compilado e uma API fictícia em memória. A fixture de catálogo agora fornece
+o número de WhatsApp no campo esperado, resolvendo as duas falhas da baseline.
+A comparação visual da Gestão permanece pendente. Consulte os comandos e
+limites em [phase-05-consumers.md](phase-05-consumers.md#aceite-ssr-do-storefront).
+
+## Retomada da Fase 5 — typecheck dos painéis
+
+Os diagnósticos TypeScript do Admin e da Gestão foram corrigidos e os
+dois comandos de typecheck passaram. O aviso do plugin Vue Router/Volar
+continua registrado. A validação visual da Gestão segue pendente.
+Consulte [os resultados](phase-05-consumers.md#typecheck-do-admin-e-da-gestão).
+
+
+## Encerramento da Fase 5
+
+O usuário confirmou a validação visual da Gestão em seu ambiente.
+A [matriz de aceite](phase-05-consumers.md#aceite-final-da-fase-5) consolida
+a confirmação e os checks registrados de Admin, Gestão, Storefront e Site.
+A próxima etapa é a Fase 6, API Core. Restam oito fases.
